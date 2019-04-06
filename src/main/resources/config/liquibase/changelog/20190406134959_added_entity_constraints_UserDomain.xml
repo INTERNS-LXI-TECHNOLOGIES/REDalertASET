@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity UserDomain.
+    -->
+    <changeSet id="20190406134959-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_domain_id"
+                                 baseTableName="user_domain_contacts"
+                                 constraintName="fk_user_domain_contacts_user_domain_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_domain"/>
+        <addForeignKeyConstraint baseColumnNames="contacts_id"
+                                 baseTableName="user_domain_contacts"
+                                 constraintName="fk_user_domain_contacts_contacts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact"/>
+        
+    </changeSet>
+</databaseChangeLog>

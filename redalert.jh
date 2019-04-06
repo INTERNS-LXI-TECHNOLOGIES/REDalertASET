@@ -1,0 +1,62 @@
+entity UserDomain {
+	firstName String,
+    lastName String,
+    email String,
+    password String
+}
+entity Contact {
+	firstName String,
+    lastName String,
+    phoneNumber Long,
+    relation Relation
+}
+enum Relation {
+	FATHER,
+    MOTHER,
+    SISTER,
+    BROTHER,
+    GUARDIAN,
+    FRIEND,
+    OTHER
+}
+entity Alert {
+	type AlertType
+}
+
+enum AlertType {
+	RED,
+    ORANGE,
+    GREEN
+}
+
+entity Location {
+	latitude String,
+    longitude String
+}
+
+entity EmergencyService {
+	name ServiceName,
+    phone Long
+}
+
+enum ServiceName {
+	FIRE,
+    AMBULANCE,
+    POLICE
+}
+
+relationship OneToOne {
+	Alert {location} to Location
+}
+
+relationship ManyToMany {
+	UserDomain {contacts} to Contact,
+}
+
+relationship OneToMany {
+	UserDomain {alerts} to Alert,
+    Alert {emergencyServices} to EmergencyService
+}
+dto * with mapstruct
+service all with serviceImpl
+paginate * with pagination
