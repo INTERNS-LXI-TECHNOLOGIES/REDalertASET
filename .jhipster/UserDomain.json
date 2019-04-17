@@ -1,0 +1,54 @@
+{
+    "name": "UserDomain",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "locality",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mobile",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "alerts",
+            "otherEntityName": "alert",
+            "otherEntityRelationshipName": "userDomain"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "userDomain",
+            "relationshipName": "contacts",
+            "otherEntityName": "contact",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190406134959",
+    "entityTableName": "user_domain",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

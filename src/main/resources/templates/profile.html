@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!--title>Material Design Bootstrap</title-->
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="/css/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<style>	
+
+
+
+
+
+
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+	  .size{
+	  height:450px;
+	  width:420px;
+	  float:right;
+	  }
+
+		.loading{
+			background-color: #;
+			height: 100%;
+			width: 100%;
+			position: fixed;
+			z-index: 1;
+			margin-top: 0px;
+			top: 100px;
+			left: 0px;
+		}
+		.loading-center{
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		.loading-center-absolute {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			height: 200px;
+			width: 200px;
+			margin-top: -100px;
+			margin-left: -100px;
+		}
+		.mapalign{
+	
+		position: left;
+		transform:translate(0px,200px);
+		}
+		
+		.grnbtn:hover
+		{
+		background-color:#1F8714;
+		border:none;
+		}
+		.grnbtn
+		{
+		background-color:#25BD15;
+		border-color:silver;
+		width:75px;
+		height:55px;
+		font-size:bolder;
+		font-size:16px;
+		transform:translate(210px,140px);
+
+		}
+		.orangebtn:hover
+		{
+		background-color:#F36C29;
+		border:none;
+		}
+		.orangebtn
+		{
+		 background-color: #3498DB;
+		  cursor: pointer;
+		    color: white;
+			 padding: 16px;
+  font-size: 16px;
+  border: none;
+		
+		}
+		
+		.greenbtn:hover
+		{
+		background-color:green;
+		border:none;
+		}
+		.greenbtn
+		{
+		background-color:#00FF00;
+		border-color:silver;
+		width:250px;
+		height:80px;
+		font-size:23px;
+		transform:translate(350px,35px);
+		border-radius: 50%;
+		}
+		.popup {
+			transform:translate(50px,200px);
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.popup .popuptext {
+	
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+		
+		.logbtn{
+			transform:translate(1150px,-310px);
+			float:left;
+		}
+		
+		.bgsize
+		{
+			background-image:url("../images/1.jpg");
+			margin-top:0px;
+		background-size:cover;
+		height:100%;
+		}
+	
+
+
+
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}	
+
+</style>
+<body>
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
+  <!--a class="navbar-brand" href="#"></a-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home.html">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+	  <!--
+        <li class="nav-item">
+        <a href="" class="nav-link" data-toggle="modal" data-target="#basicExampleModal">Features</a>
+      </li> -->
+	  
+     
+
+<li class="nav-item">
+  <a href="" class="nav-link" data-toggle="modal" data-target="#modalRegisterForm">Add_Contact</a>
+</li> 
+	 
+<li class="nav-item">
+  <a href="" class="nav-link" data-toggle="modal" data-target="#basicExampleModal2">Current_location</a>
+</li> 
+<!--	 
+	<li class="nav-item">
+        <a class="nav-link" href="logout.jsp">Logout</a>
+      </li>
+    </ul> -->
+	
+	
+  </div>
+ 
+
+   
+ 
+</nav>
+<!--/.Navbar -->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.js"></script>
+
+
+
+  
+   <div class="bgsize">
+  
+ 
+<div class="loading" >
+
+	
+    
+  
+    
+
+<center>
+<!--
+<div class="dropdown1">
+  
+  
+    <button class="btn btn-warning dropdown-toggle button1align"   role="group" onclick="myFunction1()" type="button" data-toggle="dropdown" aria-label="First group">Orange
+    <span class="caret"></span></button>
+<td>
+  <div id="myDropdown1" class="dropdown-content1">
+ 
+<form action="Profilepage" method="post"> 
+<div><input name ="city" type="hidden" id="idcity">
+<input name="postal" type="hidden" id="idpostal">
+<input name="latitude" type="hidden" id="idlatitude">
+<input name="longitude" type="hidden" id="idlongitude">
+</div>
+	<input type="hidden" name="y" value="unsafe">
+
+	  <button type="submit" class="btn btn-amber">Women molestation</button>
+	
+</form>
+
+    <button type="submit" class="btn btn-amber">flood..</button>
+  
+   
+  
+</div>
+</div> -->
+<!--
+<div class="dropdown2">
+	<button class="btn btn-danger dropdown-toggle button2align"  role="group" onclick="myFunction2()" type="button" data-toggle="dropdown" aria-label="Second group">Red
+    <span class="caret"></span></button>
+  <div id="myDropdown2" class="dropdown-content2">
+ 
+<form action="Profilepage" method="post">
+    <button type="submit" class="btn btn-amber">Earthquake</button>
+</form>
+   <form action="Profilepage" method="post">
+    <button type="submit" class="btn btn-amber">Robbery</button>
+</form>
+	<form action="Profilepage" method="post">
+    <button type="submit" class="btn btn-amber">Accident</button>
+</form>
+	<form action="Profilepage" method="post">
+    <button type="submit" class="btn btn-amber">Fire Hazard</button>
+</form>
+	
+	
+  </div>
+</div> 
+<div>
+	<button type="button" class="btn btn-success button3align"  role="group" onclick="alert('Status updtaed!')" aria-label="Third group">Green</button>
+</div>
+-->
+
+</center>
+<!--
+<div class="mapalign" >
+
+<div id="map" style="height:280px; width:1370px; vertical-align:bottom;float:right;" ></div>
+<input type="hidden" id="lat" value=" ">
+<input type="hidden" id="long" value=" ">
+</div> -->
+
+</div>
+
+
+<div class="modal fade" id="basicExampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Current Location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">About our application</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	  Our application Red Alert provides sudden alert notificatons for the required authorities in a panic situation. Three buttons Red, 
+	  Orange and Green indicates danger,warning and safe situations respectively.
+        ...
+      </div>
+	  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        
+      </div> 
+    </div>
+  </div>
+</div> -->
+
+
+
+ <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Contact</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="orangeForm-name" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Contact Name</label>
+        </div>
+        <div class="md-form mb-5">
+          <i class="fas fa-phone prefix grey-text"></i>
+          <input type="text" id="orangeForm-number" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-number">Contact Number</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="orangeForm-name" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Contact Relationship</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-deep-orange">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<center>
+<div >
+<p th:text="'Name : '+${result.firstName}+' '+${result.lastName}"></p>
+<p th:text="'Mobile no : '+${result.mobile}"></p>
+<p th:text="'Location : '+${result.locality}"></p>
+<p th:text="'User Name : '+${result.email}"></p></div></center>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+
+</script>
+
+<!-- <script>
+// When the user clicks on div, open the popup
+
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+} 
+<!-- </script> -->
+<!--	<% UserRegController   urc =new  UserRegController();
+  String userName=urc.userName(request.getRemoteUser());
+  out.println("WELCOME"+"&nbsp"+"&nbsp"+"&nbsp" +"&nbsp"+userName+".");
+  
+ %>-->
+	</div>
+</body>
+</html>

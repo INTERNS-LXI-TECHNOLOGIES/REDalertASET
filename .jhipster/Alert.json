@@ -1,0 +1,41 @@
+{
+    "name": "Alert",
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "AlertType",
+            "fieldValues": "RED,ORANGE,GREEN"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "userDomain",
+            "otherEntityName": "userDomain",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "location",
+            "otherEntityName": "location",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alert"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "emergencyServices",
+            "otherEntityName": "emergencyService",
+            "otherEntityRelationshipName": "alert"
+        }
+    ],
+    "changelogDate": "20190406135001",
+    "entityTableName": "alert",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

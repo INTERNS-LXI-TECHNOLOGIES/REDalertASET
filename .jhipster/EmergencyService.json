@@ -1,0 +1,31 @@
+{
+    "name": "EmergencyService",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "ServiceName",
+            "fieldValues": "FIRE,AMBULANCE,POLICE"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "alert",
+            "otherEntityName": "alert",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190406135003",
+    "entityTableName": "emergency_service",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
