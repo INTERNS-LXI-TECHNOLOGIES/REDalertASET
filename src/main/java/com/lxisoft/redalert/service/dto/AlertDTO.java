@@ -12,6 +12,8 @@ public class AlertDTO implements Serializable {
 
     private AlertType type;
 
+    private String description;
+
 
     private Long userDomainId;
 
@@ -31,6 +33,14 @@ public class AlertDTO implements Serializable {
 
     public void setType(AlertType type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getUserDomainId() {
@@ -75,6 +85,7 @@ public class AlertDTO implements Serializable {
         return "AlertDTO{" +
             "id=" + getId() +
             ", type='" + getType() + "'" +
+            ", description='" + getDescription() + "'" +
             ", userDomain=" + getUserDomainId() +
             ", location=" + getLocationId() +
             "}";

@@ -5,6 +5,10 @@
             "fieldName": "type",
             "fieldType": "AlertType",
             "fieldValues": "RED,ORANGE,GREEN"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
         }
     ],
     "relationships": [
@@ -16,17 +20,17 @@
         },
         {
             "relationshipType": "one-to-one",
-            "relationshipName": "location",
             "otherEntityName": "location",
+            "otherEntityRelationshipName": "alert",
+            "relationshipName": "location",
             "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "alert"
+            "ownerSide": true
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "emergencyServices",
             "otherEntityName": "emergencyService",
-            "otherEntityRelationshipName": "alert"
+            "otherEntityRelationshipName": "alert",
+            "relationshipName": "emergencyServices"
         }
     ],
     "changelogDate": "20190406135001",

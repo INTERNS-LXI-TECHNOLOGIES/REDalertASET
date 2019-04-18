@@ -47,6 +47,9 @@ public class AlertResourceIntTest {
     private static final AlertType DEFAULT_TYPE = AlertType.RED;
     private static final AlertType UPDATED_TYPE = AlertType.ORANGE;
 
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
     @Autowired
     private AlertRepository alertRepository;
 
@@ -95,7 +98,8 @@ public class AlertResourceIntTest {
      */
     public static Alert createEntity(EntityManager em) {
         Alert alert = new Alert()
-            .type(DEFAULT_TYPE);
+            .type(DEFAULT_TYPE)
+            .description(DEFAULT_DESCRIPTION);
         return alert;
     }
 
@@ -121,6 +125,7 @@ public class AlertResourceIntTest {
         assertThat(alertList).hasSize(databaseSizeBeforeCreate + 1);
         Alert testAlert = alertList.get(alertList.size() - 1);
         assertThat(testAlert.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testAlert.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
     }
 
     @Test
@@ -154,7 +159,8 @@ public class AlertResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(alert.getId().intValue())))
-            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())));
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
     
     @Test
@@ -168,7 +174,8 @@ public class AlertResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(alert.getId().intValue()))
-            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()));
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
 
     @Test
@@ -192,7 +199,8 @@ public class AlertResourceIntTest {
         // Disconnect from session so that the updates on updatedAlert are not directly saved in db
         em.detach(updatedAlert);
         updatedAlert
-            .type(UPDATED_TYPE);
+            .type(UPDATED_TYPE)
+            .description(UPDATED_DESCRIPTION);
         AlertDTO alertDTO = alertMapper.toDto(updatedAlert);
 
         restAlertMockMvc.perform(put("/api/alerts")
@@ -205,6 +213,7 @@ public class AlertResourceIntTest {
         assertThat(alertList).hasSize(databaseSizeBeforeUpdate);
         Alert testAlert = alertList.get(alertList.size() - 1);
         assertThat(testAlert.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testAlert.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }
 
     @Test

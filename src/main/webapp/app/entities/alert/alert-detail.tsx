@@ -32,6 +32,10 @@ export class AlertDetail extends React.Component<IAlertDetailProps> {
               <span id="type">Type</span>
             </dt>
             <dd>{alertEntity.type}</dd>
+            <dt>
+              <span id="description">Description</span>
+            </dt>
+            <dd>{alertEntity.description}</dd>
             <dt>User Domain</dt>
             <dd>{alertEntity.userDomainId ? alertEntity.userDomainId : ''}</dd>
             <dt>Location</dt>
@@ -39,7 +43,8 @@ export class AlertDetail extends React.Component<IAlertDetailProps> {
           </dl>
           <Button tag={Link} to="/entity/alert" replace color="info">
             <FontAwesomeIcon icon="arrow-left" /> <span className="d-none d-md-inline">Back</span>
-          </Button>&nbsp;
+          </Button>
+          &nbsp;
           <Button tag={Link} to={`/entity/alert/${alertEntity.id}/edit`} replace color="primary">
             <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
           </Button>

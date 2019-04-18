@@ -4,13 +4,17 @@ package com.lxisoft.redalert.web.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lxisoft.redalert.domain.enumeration.AlertType;
+import com.lxisoft.redalert.service.dto.AlertDTO;
+import com.lxisoft.redalert.service.dto.LocationDTO;
 import com.lxisoft.redalert.service.impl.SMSService;
 
-import io.swagger.models.Model;
 
 
 @Controller
@@ -23,8 +27,15 @@ public class HomeController
 	SMSService smsService ;
 	
 	@GetMapping("/home")
-	public String homePage()
+	public String homePage(Model model)
 	{	
+		AlertDTO red = new AlertDTO();
+		red.setType(AlertType.RED);
+		model.addAttribute("redalert", red);
+		AlertDTO orange = new AlertDTO();
+		orange.setType(AlertType.ORANGE);
+		model.addAttribute("orangealert", orange);
+		model.addAttribute("location", new LocationDTO());
 		return "home";
 	}
 	
@@ -52,6 +63,13 @@ public class HomeController
    out.println(request.getParameter("latitude"));
    out.println(request.getParameter("longitude")); */
     return "home";
+	}
+	@PostMapping("/alert-controller")
+	public String makeAlert(@ModelAttribute AlertDTO alert,@ModelAttribute LocationDTO location, Model model) {
+		System.out.println(alert.toString());
+		System.out.println(location.toString());
+	    smsService.sendSms();
+		return "redirect:/redAlertUiHome/home";
 	}
 
 }

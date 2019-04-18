@@ -9,6 +9,7 @@ export const enum AlertType {
 export interface IAlert {
   id?: number;
   type?: AlertType;
+  description?: string;
   userDomainId?: number;
   locationId?: number;
   emergencyServices?: IEmergencyService[];

@@ -22,7 +22,8 @@ enum Relation {
     OTHER
 }
 entity Alert {
-	type AlertType
+	type AlertType,
+	description String
 }
 
 enum AlertType {

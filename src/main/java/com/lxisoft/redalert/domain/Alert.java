@@ -30,6 +30,9 @@ public class Alert implements Serializable {
     @Column(name = "jhi_type")
     private AlertType type;
 
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne
     @JsonIgnoreProperties("alerts")
     private UserDomain userDomain;
@@ -60,6 +63,19 @@ public class Alert implements Serializable {
 
     public void setType(AlertType type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Alert description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public UserDomain getUserDomain() {
@@ -139,6 +155,7 @@ public class Alert implements Serializable {
         return "Alert{" +
             "id=" + getId() +
             ", type='" + getType() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

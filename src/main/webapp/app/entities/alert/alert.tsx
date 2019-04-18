@@ -55,7 +55,8 @@ export class Alert extends React.Component<IAlertProps, IAlertState> {
         <h2 id="alert-heading">
           Alerts
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp; Create new Alert
+            <FontAwesomeIcon icon="plus" />
+            &nbsp; Create new Alert
           </Link>
         </h2>
         <div className="table-responsive">
@@ -67,6 +68,9 @@ export class Alert extends React.Component<IAlertProps, IAlertState> {
                 </th>
                 <th className="hand" onClick={this.sort('type')}>
                   Type <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={this.sort('description')}>
+                  Description <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
                   User Domain <FontAwesomeIcon icon="sort" />
@@ -86,6 +90,7 @@ export class Alert extends React.Component<IAlertProps, IAlertState> {
                     </Button>
                   </td>
                   <td>{alert.type}</td>
+                  <td>{alert.description}</td>
                   <td>{alert.userDomainId ? <Link to={`user-domain/${alert.userDomainId}`}>{alert.userDomainId}</Link> : ''}</td>
                   <td>{alert.locationId ? <Link to={`location/${alert.locationId}`}>{alert.locationId}</Link> : ''}</td>
                   <td className="text-right">
