@@ -14,6 +14,8 @@ public class AlertDTO implements Serializable {
 
     private String description;
 
+    private Boolean status;
+
 
     private Long userDomainId;
 
@@ -43,6 +45,14 @@ public class AlertDTO implements Serializable {
         this.description = description;
     }
 
+    public Boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     public Long getUserDomainId() {
         return userDomainId;
     }
@@ -50,6 +60,7 @@ public class AlertDTO implements Serializable {
     public void setUserDomainId(Long userDomainId) {
         this.userDomainId = userDomainId;
     }
+    
 
     public Long getLocationId() {
         return locationId;
@@ -86,6 +97,7 @@ public class AlertDTO implements Serializable {
             "id=" + getId() +
             ", type='" + getType() + "'" +
             ", description='" + getDescription() + "'" +
+            ", status='" + isStatus() + "'" +
             ", userDomain=" + getUserDomainId() +
             ", location=" + getLocationId() +
             "}";

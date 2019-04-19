@@ -433,6 +433,7 @@ to {
 									<input name="latitude"  value="hh" type="hidden" id="idlatitude">
 									<input name="longitude"  value="sahalche" type="hidden" id="idlongitude">
 								</div>
+								<div th:if="${orangealert!=null}">
 								<input type="hidden" th:field="${orangealert.type}">
 								<input type="submit" th:name="description" class="btn btn-amber" value="WomenMolestation">
 								<input type="submit" th:name="description" class="btn btn-amber" value="Flood">
@@ -475,9 +476,15 @@ to {
 					
 				</div>
 				<div>
-					<button type="button" class="btn btn-success button3align"
-						role="group" onclick="alert('Status updated!')"
-						aria-label="Third group">Green</button>
+				<form action="/redAlertUiHome/green" method="get">
+					<button type="submit" class="btn btn-success button3align"
+						role="group" onclick="sam()" 
+						aria-label="Third group" th:value="${message}">Green</button>
+						<p id="greenbtnmsg"></p>
+						
+						</form>
+						
+						<input type="hidden" th:value="${message}" id="hiddenId">
 				</div>
 
 
@@ -541,6 +548,7 @@ to {
 				</div>
 			</div>
 		</div>
+		
 
 
 		<!--
@@ -683,6 +691,26 @@ window.onclick = function(event) {
     }
   }
 }
+
+</script>
+ <!-- <script th:inline="javascript">
+ /*<!CDATA[*/
+	 window.onload=function(){
+ var message="[[${message}]]";
+ console.log("workinggggg");
+console.log(message);
+ }
+/*]]>*/
+
+</script> -->
+<script>
+
+function sam()
+{
+	var x= document.getElementById("hiddenId");
+	console.log("ssss"+x.value);
+	alert(x.value);
+	}
 </script>
 
 		<!-- <script>

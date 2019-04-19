@@ -33,6 +33,9 @@ public class Alert implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "status")
+    private Boolean status;
+
     @ManyToOne
     @JsonIgnoreProperties("alerts")
     private UserDomain userDomain;
@@ -76,6 +79,19 @@ public class Alert implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean isStatus() {
+        return status;
+    }
+
+    public Alert status(Boolean status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public UserDomain getUserDomain() {
@@ -156,6 +172,7 @@ public class Alert implements Serializable {
             "id=" + getId() +
             ", type='" + getType() + "'" +
             ", description='" + getDescription() + "'" +
+            ", status='" + isStatus() + "'" +
             "}";
     }
 }

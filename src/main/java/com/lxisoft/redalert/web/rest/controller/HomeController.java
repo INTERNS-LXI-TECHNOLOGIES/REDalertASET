@@ -2,6 +2,8 @@ package com.lxisoft.redalert.web.rest.controller;
 
 
 
+import java.net.URISyntaxException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import com.lxisoft.redalert.domain.enumeration.AlertType;
 import com.lxisoft.redalert.service.dto.AlertDTO;
 import com.lxisoft.redalert.service.dto.LocationDTO;
 import com.lxisoft.redalert.service.impl.SMSService;
+import com.lxisoft.redalert.web.rest.AlertResource;
 
 
 
@@ -21,11 +24,11 @@ import com.lxisoft.redalert.service.impl.SMSService;
 @RequestMapping("/redAlertUiHome")
 public class HomeController 
 {
-
-	
+	@Autowired
+	AlertResource alertResource;
 	@Autowired
 	SMSService smsService ;
-	
+	  String msg="you can not choose this unwantedly Since you haven't made an alert";
 	@GetMapping("/home")
 	public String homePage(Model model)
 	{	
@@ -36,40 +39,42 @@ public class HomeController
 		orange.setType(AlertType.ORANGE);
 		model.addAttribute("orangealert", orange);
 		model.addAttribute("location", new LocationDTO());
+		System.out.println(model.containsAttribute("message"));
+		model.addAttribute("message", msg);
 		return "home";
 	}
 	
-	
-	@PostMapping("/sendmessage")
-		public String MessagepassService(Model model)
-	{
-	//PrintWriter out=response.getWriter();
-  /*   PoliceController policeController=new PoliceController();
 
-    long policenumber=policeController.getStationNumber(request.getParameter("city"));
-    long postal=Long.parseLong(request.getParameter("postal"));
-
-    double latitude=Double.parseDouble(request.getParameter("latitude"));
-    double longitude=Double.parseDouble(request.getParameter("longitude"));
-    String location=request.getParameter("city");
-    sms_Service.receiveLocation(postal,latitude,longitude,location); */
-    smsService.sendSms();
-
-
-  /*  out.println("The message has been sent succesfully!!!");
-   out.println(policenumber);
-   out.println(request.getParameter("city"));
-   out.println(request.getParameter("postal"));
-   out.println(request.getParameter("latitude"));
-   out.println(request.getParameter("longitude")); */
-    return "home";
-	}
 	@PostMapping("/alert-controller")
-	public String makeAlert(@ModelAttribute AlertDTO alert,@ModelAttribute LocationDTO location, Model model) {
+	public String makeAlert(@ModelAttribute AlertDTO alert,@ModelAttribute LocationDTO location, Model model) throws URISyntaxException {
 		System.out.println(alert.toString());
+		System.out.println(alert.getType());
 		System.out.println(location.toString());
-	    smsService.sendSms();
-		return "redirect:/redAlertUiHome/home";
+		System.out.println("smsService"+smsService);
+	    smsService.sendSms(alert.getDescription(),alert.getType());
+	    alert.setStatus(true);
+	    alert=alertResource.createAlert(alert).getBody();
+		return "redirect:/redAlertUiHome/green";
 	}
+	@GetMapping("/green")
+	 public String safeStatus(Model model)
+	 {
+	 	System.out.println("smsService "+smsService);
+	 	System.out.println("alertDTO "+smsService.alertDTO);
+	 	System.out.println("isStatus "+smsService.alertDTO.isStatus());
+	 	
+		if	 (smsService.alertDTO.isStatus()==true)
+		{
+			smsService.alertDTO.setStatus(false);
+			msg=" The message has been sent";
+			model.addAttribute("message",msg);
+		}
+		else 
+		{	msg="you can not choose this unwantedly Since you haven't made an alert";
+			model.addAttribute("message",msg);
+		}
+		System.out.println(msg);
+	     return "redirect:/redAlertUiHome/home";
+	 }
 
 }

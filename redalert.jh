@@ -23,10 +23,12 @@ enum Relation {
 }
 entity Alert {
 	type AlertType,
-	description String
+	description String,
+	status Boolean
 }
 
 enum AlertType {
+
 	RED,
     ORANGE,
     GREEN

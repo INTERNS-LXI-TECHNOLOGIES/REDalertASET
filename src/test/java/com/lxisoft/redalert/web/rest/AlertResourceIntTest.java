@@ -50,6 +50,9 @@ public class AlertResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_STATUS = false;
+    private static final Boolean UPDATED_STATUS = true;
+
     @Autowired
     private AlertRepository alertRepository;
 
@@ -99,7 +102,8 @@ public class AlertResourceIntTest {
     public static Alert createEntity(EntityManager em) {
         Alert alert = new Alert()
             .type(DEFAULT_TYPE)
-            .description(DEFAULT_DESCRIPTION);
+            .description(DEFAULT_DESCRIPTION)
+            .status(DEFAULT_STATUS);
         return alert;
     }
 
@@ -126,6 +130,7 @@ public class AlertResourceIntTest {
         Alert testAlert = alertList.get(alertList.size() - 1);
         assertThat(testAlert.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testAlert.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testAlert.isStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -160,7 +165,8 @@ public class AlertResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(alert.getId().intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.booleanValue())));
     }
     
     @Test
@@ -175,7 +181,8 @@ public class AlertResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(alert.getId().intValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.booleanValue()));
     }
 
     @Test
@@ -200,7 +207,8 @@ public class AlertResourceIntTest {
         em.detach(updatedAlert);
         updatedAlert
             .type(UPDATED_TYPE)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .status(UPDATED_STATUS);
         AlertDTO alertDTO = alertMapper.toDto(updatedAlert);
 
         restAlertMockMvc.perform(put("/api/alerts")
@@ -214,6 +222,7 @@ public class AlertResourceIntTest {
         Alert testAlert = alertList.get(alertList.size() - 1);
         assertThat(testAlert.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testAlert.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testAlert.isStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

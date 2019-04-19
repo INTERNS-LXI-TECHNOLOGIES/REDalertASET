@@ -72,6 +72,9 @@ export class Alert extends React.Component<IAlertProps, IAlertState> {
                 <th className="hand" onClick={this.sort('description')}>
                   Description <FontAwesomeIcon icon="sort" />
                 </th>
+                <th className="hand" onClick={this.sort('status')}>
+                  Status <FontAwesomeIcon icon="sort" />
+                </th>
                 <th>
                   User Domain <FontAwesomeIcon icon="sort" />
                 </th>
@@ -91,6 +94,7 @@ export class Alert extends React.Component<IAlertProps, IAlertState> {
                   </td>
                   <td>{alert.type}</td>
                   <td>{alert.description}</td>
+                  <td>{alert.status ? 'true' : 'false'}</td>
                   <td>{alert.userDomainId ? <Link to={`user-domain/${alert.userDomainId}`}>{alert.userDomainId}</Link> : ''}</td>
                   <td>{alert.locationId ? <Link to={`location/${alert.locationId}`}>{alert.locationId}</Link> : ''}</td>
                   <td className="text-right">

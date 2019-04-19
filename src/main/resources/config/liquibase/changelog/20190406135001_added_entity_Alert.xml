@@ -30,6 +30,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="status" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <column name="user_domain_id" type="bigint">
                 <constraints nullable="true" />
             </column>

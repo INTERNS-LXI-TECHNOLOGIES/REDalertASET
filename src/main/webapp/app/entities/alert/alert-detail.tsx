@@ -36,6 +36,10 @@ export class AlertDetail extends React.Component<IAlertDetailProps> {
               <span id="description">Description</span>
             </dt>
             <dd>{alertEntity.description}</dd>
+            <dt>
+              <span id="status">Status</span>
+            </dt>
+            <dd>{alertEntity.status ? 'true' : 'false'}</dd>
             <dt>User Domain</dt>
             <dd>{alertEntity.userDomainId ? alertEntity.userDomainId : ''}</dd>
             <dt>Location</dt>

@@ -111,6 +111,12 @@ export class AlertUpdate extends React.Component<IAlertUpdateProps, IAlertUpdate
                   <AvField id="alert-description" type="text" name="description" />
                 </AvGroup>
                 <AvGroup>
+                  <Label id="statusLabel" check>
+                    <AvInput id="alert-status" type="checkbox" className="form-control" name="status" />
+                    Status
+                  </Label>
+                </AvGroup>
+                <AvGroup>
                   <Label for="userDomain.id">User Domain</Label>
                   <AvInput id="alert-userDomain" type="select" className="form-control" name="userDomainId">
                     <option value="" key="0" />

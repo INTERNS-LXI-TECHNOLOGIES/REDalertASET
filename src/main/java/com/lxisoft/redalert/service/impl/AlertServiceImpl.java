@@ -83,7 +83,6 @@ public class AlertServiceImpl implements AlertService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Alert : {}", id);
-        alertRepository.deleteById(id);
+        log.debug("Request to delete Alert : {}", id);        alertRepository.deleteById(id);
     }
 }

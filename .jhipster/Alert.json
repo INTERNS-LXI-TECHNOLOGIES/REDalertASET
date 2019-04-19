@@ -9,6 +9,10 @@
         {
             "fieldName": "description",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [
@@ -20,17 +24,17 @@
         },
         {
             "relationshipType": "one-to-one",
-            "otherEntityName": "location",
-            "otherEntityRelationshipName": "alert",
             "relationshipName": "location",
+            "otherEntityName": "location",
             "otherEntityField": "id",
-            "ownerSide": true
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alert"
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "emergencyServices",
             "otherEntityName": "emergencyService",
-            "otherEntityRelationshipName": "alert",
-            "relationshipName": "emergencyServices"
+            "otherEntityRelationshipName": "alert"
         }
     ],
     "changelogDate": "20190406135001",
