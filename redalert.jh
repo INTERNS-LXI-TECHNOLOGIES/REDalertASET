@@ -4,13 +4,18 @@ entity UserDomain {
     email String,
     password String,
     locality String,
-    mobile Long
+    mobile Long,
+	activated Boolean
 }
 entity Contact {
 	firstName String,
     lastName String,
     phoneNumber Long,
     relation Relation
+}
+entity Role {
+name String
+
 }
 enum Relation {
 	FATHER,
@@ -56,6 +61,7 @@ relationship OneToOne {
 
 relationship ManyToMany {
 	UserDomain {contacts} to Contact,
+	UserDomain {roles} to Role{users},
 }
 
 relationship OneToMany {

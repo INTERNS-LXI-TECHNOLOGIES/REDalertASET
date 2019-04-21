@@ -23,8 +23,12 @@ public class UserDomainDTO implements Serializable {
 
     private Long mobile;
 
+    private Boolean activated;
+
 
     private Set<ContactDTO> contacts = new HashSet<>();
+
+    private Set<RoleDTO> roles = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -82,12 +86,28 @@ public class UserDomainDTO implements Serializable {
         this.mobile = mobile;
     }
 
+    public Boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
+    }
+
     public Set<ContactDTO> getContacts() {
         return contacts;
     }
 
     public void setContacts(Set<ContactDTO> contacts) {
         this.contacts = contacts;
+    }
+
+    public Set<RoleDTO> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleDTO> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -121,6 +141,7 @@ public class UserDomainDTO implements Serializable {
             ", password='" + getPassword() + "'" +
             ", locality='" + getLocality() + "'" +
             ", mobile=" + getMobile() +
+            ", activated='" + isActivated() + "'" +
             "}";
     }
 }

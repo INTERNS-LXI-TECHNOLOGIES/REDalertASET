@@ -46,6 +46,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="activated" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         
@@ -59,6 +63,17 @@
         </createTable>
 
         <addPrimaryKey columnNames="user_domain_id, contacts_id" tableName="user_domain_contacts"/>
+        
+        <createTable tableName="user_domain_roles">
+            <column name="roles_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_domain_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="user_domain_id, roles_id" tableName="user_domain_roles"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

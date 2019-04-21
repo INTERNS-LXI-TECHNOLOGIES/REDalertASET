@@ -7,18 +7,18 @@ import { ICrudGetAllAction, getSortState, IPaginationBaseState, getPaginationIte
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import { getEntities } from './user-domain.reducer';
-import { IUserDomain } from 'app/shared/model/user-domain.model';
+import { getEntities } from './role.reducer';
+import { IRole } from 'app/shared/model/role.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
-export interface IUserDomainProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
+export interface IRoleProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export type IUserDomainState = IPaginationBaseState;
+export type IRoleState = IPaginationBaseState;
 
-export class UserDomain extends React.Component<IUserDomainProps, IUserDomainState> {
-  state: IUserDomainState = {
+export class Role extends React.Component<IRoleProps, IRoleState> {
+  state: IRoleState = {
     ...getSortState(this.props.location, ITEMS_PER_PAGE)
   };
 
@@ -49,14 +49,14 @@ export class UserDomain extends React.Component<IUserDomainProps, IUserDomainSta
   };
 
   render() {
-    const { userDomainList, match, totalItems } = this.props;
+    const { roleList, match, totalItems } = this.props;
     return (
       <div>
-        <h2 id="user-domain-heading">
-          User Domains
+        <h2 id="role-heading">
+          Roles
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
-            &nbsp; Create new User Domain
+            &nbsp; Create new Role
           </Link>
         </h2>
         <div className="table-responsive">
@@ -66,54 +66,30 @@ export class UserDomain extends React.Component<IUserDomainProps, IUserDomainSta
                 <th className="hand" onClick={this.sort('id')}>
                   ID <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={this.sort('firstName')}>
-                  First Name <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={this.sort('lastName')}>
-                  Last Name <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={this.sort('email')}>
-                  Email <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={this.sort('password')}>
-                  Password <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={this.sort('locality')}>
-                  Locality <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={this.sort('mobile')}>
-                  Mobile <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={this.sort('activated')}>
-                  Activated <FontAwesomeIcon icon="sort" />
+                <th className="hand" onClick={this.sort('name')}>
+                  Name <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
             </thead>
             <tbody>
-              {userDomainList.map((userDomain, i) => (
+              {roleList.map((role, i) => (
                 <tr key={`entity-${i}`}>
                   <td>
-                    <Button tag={Link} to={`${match.url}/${userDomain.id}`} color="link" size="sm">
-                      {userDomain.id}
+                    <Button tag={Link} to={`${match.url}/${role.id}`} color="link" size="sm">
+                      {role.id}
                     </Button>
                   </td>
-                  <td>{userDomain.firstName}</td>
-                  <td>{userDomain.lastName}</td>
-                  <td>{userDomain.email}</td>
-                  <td>{userDomain.password}</td>
-                  <td>{userDomain.locality}</td>
-                  <td>{userDomain.mobile}</td>
-                  <td>{userDomain.activated ? 'true' : 'false'}</td>
+                  <td>{role.name}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${userDomain.id}`} color="info" size="sm">
+                      <Button tag={Link} to={`${match.url}/${role.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${userDomain.id}/edit`} color="primary" size="sm">
+                      <Button tag={Link} to={`${match.url}/${role.id}/edit`} color="primary" size="sm">
                         <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${userDomain.id}/delete`} color="danger" size="sm">
+                      <Button tag={Link} to={`${match.url}/${role.id}/delete`} color="danger" size="sm">
                         <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
                       </Button>
                     </div>
@@ -136,9 +112,9 @@ export class UserDomain extends React.Component<IUserDomainProps, IUserDomainSta
   }
 }
 
-const mapStateToProps = ({ userDomain }: IRootState) => ({
-  userDomainList: userDomain.entities,
-  totalItems: userDomain.totalItems
+const mapStateToProps = ({ role }: IRootState) => ({
+  roleList: role.entities,
+  totalItems: role.totalItems
 });
 
 const mapDispatchToProps = {
@@ -151,4 +127,4 @@ type DispatchProps = typeof mapDispatchToProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserDomain);
+)(Role);

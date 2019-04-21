@@ -49,6 +49,12 @@ public class UserDomain implements Serializable {
                inverseJoinColumns = @JoinColumn(name = "contacts_id", referencedColumnName = "id"))
     private Set<Contact> contacts = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "user_domain_roles",
+               joinColumns = @JoinColumn(name = "user_domain_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+    private Set<Role> roles = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -170,9 +176,45 @@ public class UserDomain implements Serializable {
         return this;
     }
 
+    public UserDomain addContacts(Contact contact) {
+        this.contacts.add(contact);
+        contact.getUserDomains().add(this);
+        return this;
+    }
+
+    public UserDomain removeContacts(Contact contact) {
+        this.contacts.remove(contact);
+        contact.getUserDomains().remove(this);
+        return this;
+    }
 
     public void setContacts(Set<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public UserDomain roles(Set<Role> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    public UserDomain addRoles(Role role) {
+        this.roles.add(role);
+        role.getUsers().add(this);
+        return this;
+    }
+
+    public UserDomain removeRoles(Role role) {
+        this.roles.remove(role);
+        role.getUsers().remove(this);
+        return this;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
