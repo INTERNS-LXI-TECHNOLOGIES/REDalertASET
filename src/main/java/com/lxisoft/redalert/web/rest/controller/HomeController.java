@@ -51,7 +51,7 @@ public class HomeController
 		System.out.println(alert.getType());
 		System.out.println(location.toString());
 		System.out.println("smsService"+smsService);
-	    smsService.sendSms(alert.getDescription(),alert.getType());
+	    smsService.sendSms(alert.getDescription(),alert.getType(),location);
 	    alert.setStatus(true);
 	    alert=alertResource.createAlert(alert).getBody();
 		return "redirect:/redAlertUiHome/green";

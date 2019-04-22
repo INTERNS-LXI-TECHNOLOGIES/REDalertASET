@@ -15,11 +15,11 @@
 <!-- Your custom styles (optional) -->
 <link href="/css/style.css" rel="stylesheet">
 <link rel="/stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css}">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
 </head>
 <style>
 .button1align {
@@ -390,13 +390,13 @@ to {
 
 	<!-- SCRIPTS -->
 	<!-- JQuery -->
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="js/mdb.js"></script>
+	<script type="text/javascript" src="/js/mdb.js"></script>
 
 
 
@@ -430,8 +430,8 @@ to {
 								<div>
 <!-- 									<input name="city" type="hidden" id="idcity">  -->
 <!-- 									<input name="postal" type="hidden" id="idpostal"> -->
-									<input name="latitude"  value="hh" type="hidden" id="idlatitude">
-									<input name="longitude"  value="sahalche" type="hidden" id="idlongitude">
+									<input name="latitude"   type="hidden" id="idlatitude">
+									<input name="longitude"  type="hidden" id="idlongitude">
 								</div>
 								<div th:if="${orangealert!=null}">
 								<input type="hidden" th:field="${orangealert.type}">
@@ -458,8 +458,8 @@ to {
 								<div>
 <!-- 									<input name="city" type="hidden" id="idcity">  -->
 <!-- 									<input name="postal" type="hidden" id="idpostal"> -->
-									<input name="latitude"  value="hh" type="hidden" id="idlatitude">
-									<input name="longitude"  value="sahalche" type="hidden" id="idlongitude">
+									<input name="latitude"   type="hidden" id="idlatitude1">
+									<input name="longitude"  type="hidden" id="idlongitude1">
 								</div>
 								<input type="hidden" th:field="${redalert.type}">
 								<input type="submit" th:name="description" class="btn btn-amber" value="WomenMolestation">
@@ -597,6 +597,8 @@ var country = document.getElementById('idcountry');
     var postal = document.getElementById('idpostal');
     var latitude = document.getElementById('idlatitude');
     var longitude = document.getElementById('idlongitude');
+    var latitude1 = document.getElementById('idlatitude1');
+    var longitude1 = document.getElementById('idlongitude1');
     var ip = document.getElementById('idipv4');
 	var loc;
 	
@@ -620,6 +622,7 @@ function showPosition(position) {
           center: loc,
           zoom: 15
         });
+        //console.log(loc.lat+"rtdtr"+longitude1.value);
 		//console.log(position.coords.latitude);
 		document.getElementById("lat").value=position.coords.latitude;
 		document.getElementById("long").value=position.coords.longitude;
@@ -628,13 +631,17 @@ function showPosition(position) {
 	  }
 	  function callback(data)
     {
-        country.value = data.country_name;
+       // country.value = data.country_name;
         state.value = data.state;
-        city.value = data.city;
-        postal.value= data.postal;
+       // city.value = data.city;
+       // postal.value= data.postal;
         latitude.value =  loc.lat;
         longitude.value =  loc.lng;
-       ip.innerHTML = data.IPv4;
+        longitude1.value =  loc.lng;
+        latitude1.value =  loc.lat;
+    
+      // ip.innerHTML = data.IPv4;
+      
 	   	
 		  }
 		  
