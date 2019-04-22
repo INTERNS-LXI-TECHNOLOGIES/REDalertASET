@@ -24,6 +24,10 @@
         {
             "fieldName": "mobile",
             "fieldType": "Long"
+        },
+        {
+            "fieldName": "activated",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [
@@ -38,6 +42,14 @@
             "otherEntityRelationshipName": "userDomain",
             "relationshipName": "contacts",
             "otherEntityName": "contact",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "users",
+            "relationshipName": "roles",
+            "otherEntityName": "role",
             "otherEntityField": "id",
             "ownerSide": true
         }

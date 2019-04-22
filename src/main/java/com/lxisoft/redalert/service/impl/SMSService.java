@@ -1,5 +1,6 @@
 package com.lxisoft.redalert.service.impl;
 import com.lxisoft.redalert.service.dto.AlertDTO;
+import com.lxisoft.redalert.service.dto.LocationDTO;
 import com.lxisoft.redalert.web.rest.controller.HomeController;
 
 import org.springframework.stereotype.Service;
@@ -20,16 +21,19 @@ import com.twilio.type.PhoneNumber;
 		String location;
 		double latitude,longitude;
 		public static AlertDTO  alertDTO=new AlertDTO();
-		public void sendSms(String msg,AlertType alertType) {
+		public void sendSms(String msg,AlertType alertType,LocationDTO locationDTO) {
 			try {
-				
+				String lat=locationDTO.getLatitude();
+				String	lng=locationDTO.getLongitude();
 			if(alertType.equals(AlertType.RED))
 			{
 				String pos=Long.toString(postal); 
 				Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+				
 				Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+918078248075"),
-                new com.twilio.type.PhoneNumber("+16605708554"),"I am facing "+msg+"(Immediate actions to be taken.)").create(); 
+                new com.twilio.type.PhoneNumber("+16605708554"),"I am facing "+msg+"( Immediate actions to be taken.)"+"latitude is "
+                		+lat+"longitude"+lng).create(); 
 
 				System.out.println(message.getSid());
 		
@@ -48,7 +52,8 @@ import com.twilio.type.PhoneNumber;
 				Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 				Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+918078248075"),
-                new com.twilio.type.PhoneNumber("+16605708554"),"There is a chance of occurance of"+msg).create(); 
+                new com.twilio.type.PhoneNumber("+16605708554"),"There is a chance of occurance of "+msg+"(Immediate actions to be taken.)"+"latitude is "
+                		+lat+"longitude"+lng).create(); 
 
 				System.out.println(message.getSid());
 		

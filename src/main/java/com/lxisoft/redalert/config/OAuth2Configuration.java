@@ -33,68 +33,68 @@ import java.io.IOException;
 @Configuration
 @Profile("dev")
 public class OAuth2Configuration {
-    public static final String SAVED_LOGIN_ORIGIN_URI = OAuth2Configuration.class.getName() + "_SAVED_ORIGIN";
-
-    private final Logger log = LoggerFactory.getLogger(OAuth2Configuration.class);
-
-    @Bean
-    public FilterRegistrationBean<OncePerRequestFilter> saveLoginOriginFilter() {
-        OncePerRequestFilter filter = new OncePerRequestFilter() {
-            @Override
-            protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                            FilterChain filterChain)
-                throws ServletException, IOException {
-                if (request.getRemoteUser() == null && request.getRequestURI().endsWith("/login")) {
-                    String referrer = request.getHeader("referer");
-                    if (!StringUtils.isBlank(referrer) &&
-                        request.getSession().getAttribute(SAVED_LOGIN_ORIGIN_URI) == null) {
-                        log.debug("Saving login origin URI: {}", referrer);
-                        request.getSession().setAttribute(SAVED_LOGIN_ORIGIN_URI, referrer);
-                    }
-                }
-                filterChain.doFilter(request, response);
-            }
-        };
-        FilterRegistrationBean<OncePerRequestFilter> bean = new FilterRegistrationBean<>(filter);
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        return bean;
-    }
-
-    @Bean
-    public static DefaultRolesPrefixPostProcessor defaultRolesPrefixPostProcessor() {
-        return new DefaultRolesPrefixPostProcessor();
-    }
-
-    public static class DefaultRolesPrefixPostProcessor implements BeanPostProcessor, PriorityOrdered {
-
-        @Override
-        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-            if (bean instanceof FilterChainProxy) {
-
-                FilterChainProxy chains = (FilterChainProxy) bean;
-
-                for (SecurityFilterChain chain : chains.getFilterChains()) {
-                    for (Filter filter : chain.getFilters()) {
-                        if (filter instanceof OAuth2ClientAuthenticationProcessingFilter) {
-                            OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter =
-                                (OAuth2ClientAuthenticationProcessingFilter) filter;
-                            oAuth2ClientAuthenticationProcessingFilter
-                                .setAuthenticationSuccessHandler(new OAuth2AuthenticationSuccessHandler());
-                        }
-                    }
-                }
-            }
-            return bean;
-        }
-
-        @Override
-        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-            return bean;
-        }
-
-        @Override
-        public int getOrder() {
-            return PriorityOrdered.HIGHEST_PRECEDENCE;
-        }
-    }
+//    public static final String SAVED_LOGIN_ORIGIN_URI = OAuth2Configuration.class.getName() + "_SAVED_ORIGIN";
+//
+//    private final Logger log = LoggerFactory.getLogger(OAuth2Configuration.class);
+//
+//    @Bean
+//    public FilterRegistrationBean<OncePerRequestFilter> saveLoginOriginFilter() {
+//        OncePerRequestFilter filter = new OncePerRequestFilter() {
+//            @Override
+//            protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+//                                            FilterChain filterChain)
+//                throws ServletException, IOException {
+//                if (request.getRemoteUser() == null && request.getRequestURI().endsWith("/login")) {
+//                    String referrer = request.getHeader("referer");
+//                    if (!StringUtils.isBlank(referrer) &&
+//                        request.getSession().getAttribute(SAVED_LOGIN_ORIGIN_URI) == null) {
+//                        log.debug("Saving login origin URI: {}", referrer);
+//                        request.getSession().setAttribute(SAVED_LOGIN_ORIGIN_URI, referrer);
+//                    }
+//                }
+//                filterChain.doFilter(request, response);
+//            }
+//        };
+//        FilterRegistrationBean<OncePerRequestFilter> bean = new FilterRegistrationBean<>(filter);
+//        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        return bean;
+//    }
+//
+//    @Bean
+//    public static DefaultRolesPrefixPostProcessor defaultRolesPrefixPostProcessor() {
+//        return new DefaultRolesPrefixPostProcessor();
+//    }
+//
+//    public static class DefaultRolesPrefixPostProcessor implements BeanPostProcessor, PriorityOrdered {
+//
+//        @Override
+//        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+//            if (bean instanceof FilterChainProxy) {
+//
+//                FilterChainProxy chains = (FilterChainProxy) bean;
+//
+//                for (SecurityFilterChain chain : chains.getFilterChains()) {
+//                    for (Filter filter : chain.getFilters()) {
+//                        if (filter instanceof OAuth2ClientAuthenticationProcessingFilter) {
+//                            OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter =
+//                                (OAuth2ClientAuthenticationProcessingFilter) filter;
+//                            oAuth2ClientAuthenticationProcessingFilter
+//                                .setAuthenticationSuccessHandler(new OAuth2AuthenticationSuccessHandler());
+//                        }
+//                    }
+//                }
+//            }
+//            return bean;
+//        }
+//
+//        @Override
+//        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+//            return bean;
+//        }
+//
+//        @Override
+//        public int getOrder() {
+//            return PriorityOrdered.HIGHEST_PRECEDENCE;
+//        }
+//    }
 }

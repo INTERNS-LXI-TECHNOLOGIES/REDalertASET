@@ -4,7 +4,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!--title>Material Design Bootstrap</title-->
+ <!--title>Material Design Bootstrap</title-->
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
@@ -15,13 +15,13 @@
 <!-- Your custom styles (optional) -->
 <link href="/css/style.css" rel="stylesheet">
 <link rel="/stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css}">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
 </head>
-<style>
+<style> 
 .button1align {
 	transform: translate(-200px, 150px);
 }
@@ -390,13 +390,13 @@ to {
 
 	<!-- SCRIPTS -->
 	<!-- JQuery -->
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="js/mdb.js"></script>
+	<script type="text/javascript" src="/js/mdb.js"></script>
 
 
 
@@ -458,8 +458,8 @@ to {
 								<div>
 <!-- 									<input name="city" type="hidden" id="idcity">  -->
 <!-- 									<input name="postal" type="hidden" id="idpostal"> -->
-									<input name="latitude"  value="hh" type="hidden" id="idlatitude">
-									<input name="longitude"  value="sahalche" type="hidden" id="idlongitude">
+									<input name="latitude"   type="hidden" id="idlatitude1">
+									<input name="longitude"  type="hidden" id="idlongitude1">
 								</div>
 								<input type="hidden" th:field="${redalert.type}">
 								<input type="submit" th:name="description" class="btn btn-amber" value="WomenMolestation">
@@ -596,7 +596,10 @@ var country = document.getElementById('idcountry');
     var city = document.getElementById('idcity');
     var postal = document.getElementById('idpostal');
     var latitude = document.getElementById('idlatitude');
+    console.log(latitude.value+"hdggf");
     var longitude = document.getElementById('idlongitude');
+    var latitude1 = document.getElementById('idlatitude1');
+    var longitude1 = document.getElementById('idlongitude1');
     var ip = document.getElementById('idipv4');
 	var loc;
 	
@@ -616,6 +619,9 @@ function showPosition(position) {
  //x.innerHTML = position.coords.latitude;
   //"<br>Longitude: " + position.coords.longitude;
 	  loc={lat:  position.coords.latitude, lng: position.coords.longitude};
+	  
+	//  latitude.value =  loc.lat;
+	  console.log(latitude.value+"hdggfffff");
         map = new google.maps.Map(document.getElementById('map'), {
           center: loc,
           zoom: 15
@@ -628,16 +634,20 @@ function showPosition(position) {
 	  }
 	  function callback(data)
     {
-        country.value = data.country_name;
+        //country.value = data.country_name;
         state.value = data.state;
-        city.value = data.city;
-        postal.value= data.postal;
+       // city.value = data.city;
+       // postal.value= data.postal;
         latitude.value =  loc.lat;
+        console.log(latitude.value+"ffffff");
+       
         longitude.value =  loc.lng;
-       ip.innerHTML = data.IPv4;
+        latitude1.value =  loc.lat;  
+        longitude1.value =  loc.lng;
+       //ip.innerHTML = data.IPv4;
 	   	
-		  }
-		  
+		  } console.log("ffffff");
+	 
 		var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://geoip-db.com/json/geoip.php?jsonp=callback';

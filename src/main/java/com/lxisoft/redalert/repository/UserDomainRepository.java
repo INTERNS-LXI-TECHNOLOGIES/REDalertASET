@@ -17,14 +17,14 @@ import java.util.Optional;
 @Repository
 public interface UserDomainRepository extends JpaRepository<UserDomain, Long> {
 
-    @Query(value = "select distinct user_domain from UserDomain user_domain left join fetch user_domain.contacts",
+    @Query(value = "select distinct user_domain from UserDomain user_domain left join fetch user_domain.contacts left join fetch user_domain.roles",
         countQuery = "select count(distinct user_domain) from UserDomain user_domain")
     Page<UserDomain> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query(value = "select distinct user_domain from UserDomain user_domain left join fetch user_domain.contacts")
+    @Query(value = "select distinct user_domain from UserDomain user_domain left join fetch user_domain.contacts left join fetch user_domain.roles")
     List<UserDomain> findAllWithEagerRelationships();
 
-    @Query("select user_domain from UserDomain user_domain left join fetch user_domain.contacts where user_domain.id =:id")
+    @Query("select user_domain from UserDomain user_domain left join fetch user_domain.contacts left join fetch user_domain.roles where user_domain.id =:id")
     Optional<UserDomain> findOneWithEagerRelationships(@Param("id") Long id);
 
 }

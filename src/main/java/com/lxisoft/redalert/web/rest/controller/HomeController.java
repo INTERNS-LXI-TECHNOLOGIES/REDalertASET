@@ -51,7 +51,7 @@ public class HomeController
 		System.out.println(alert.getType());
 		System.out.println(location.toString());
 		System.out.println("smsService"+smsService);
-	    smsService.sendSms(alert.getDescription(),alert.getType());
+	    smsService.sendSms(alert.getDescription(),alert.getType(),location);
 	    alert.setStatus(true);
 	    alert=alertResource.createAlert(alert).getBody();
 		return "redirect:/redAlertUiHome/green";
@@ -59,9 +59,9 @@ public class HomeController
 	@GetMapping("/green")
 	 public String safeStatus(Model model)
 	 {
-	 	System.out.println("smsService "+smsService);
-	 	System.out.println("alertDTO "+smsService.alertDTO);
-	 	System.out.println("isStatus "+smsService.alertDTO.isStatus());
+	 //	System.out.println("smsService "+smsService);
+	 //	System.out.println("alertDTO "+smsService.alertDTO);
+	 //	System.out.println("isStatus "+smsService.alertDTO.isStatus());
 	 	
 		if	 (smsService.alertDTO.isStatus()==true)
 		{
