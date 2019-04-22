@@ -178,13 +178,11 @@ public class UserDomain implements Serializable {
 
     public UserDomain addContacts(Contact contact) {
         this.contacts.add(contact);
-        contact.getUserDomains().add(this);
         return this;
     }
 
     public UserDomain removeContacts(Contact contact) {
         this.contacts.remove(contact);
-        contact.getUserDomains().remove(this);
         return this;
     }
 
