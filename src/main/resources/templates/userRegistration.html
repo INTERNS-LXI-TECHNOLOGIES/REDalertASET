@@ -89,6 +89,7 @@
 
 
 <form th:action="@{/registration/save-contact}" method="post" th:object="${userData}">
+ <input type="submit" value="Submit">
 <h1 align="">USER REGISTRATION</h1>	
 <div class="">
   First Name  : <input type="text" name="firstName" placeholder="FirstName" required="" th:field="*{user.firstName}"> </div><br>
@@ -114,7 +115,10 @@
 		</div>
 	 </div>	
 	 </div>
+	 <div class="">
 	
+	 </div>
+</form>
 	<!--  <script>
 	function fun()
 	{
@@ -134,8 +138,7 @@
 <input type="submit" value="logout" class="logbtn"></form>
 </script>-->
    
-  <input type="submit" value="Submit">
-</form>
+ 
 <!--  form action="index.html" method="POST">
 <input type="submit" value="logout" class="logbtn"></form>-->
 </div>
