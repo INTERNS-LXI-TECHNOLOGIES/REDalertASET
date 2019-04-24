@@ -35,11 +35,12 @@ import com.twilio.type.PhoneNumber;
                 new com.twilio.type.PhoneNumber("+16605708554"),"I am facing "+msg+"( Immediate actions to be taken.)"+"latitude is "
                 		+lat+"longitude"+lng).create(); 
 
+
 				System.out.println(message.getSid());
 		
 				Message message1 = Message.creator(
 				new com.twilio.type.PhoneNumber("+919847684091"),
-                new com.twilio.type.PhoneNumber("+16605708554"),"I am facing "+msg)
+                new com.twilio.type.PhoneNumber("+16605708554"),"I am facing "+msg+"latitude is "+lat+"longitude"+lng)
 				.create();
 				System.out.println(message1.getSid());
 				 this.alertDTO.setStatus(true);
@@ -55,11 +56,12 @@ import com.twilio.type.PhoneNumber;
                 new com.twilio.type.PhoneNumber("+16605708554"),"There is a chance of occurance of "+msg+"(Immediate actions to be taken.)"+"latitude is "
                 		+lat+"longitude"+lng).create(); 
 
+
 				System.out.println(message.getSid());
 		
 				Message message1 = Message.creator(
 				new com.twilio.type.PhoneNumber("+919847684091"),
-                new com.twilio.type.PhoneNumber("+16605708554"),"There is a chance of occurance of"+msg)
+                new com.twilio.type.PhoneNumber("+16605708554"),"There is a chance of occurance of"+msg+"latitude is "+lat+"longitude"+lng)
 				.create();
 				System.out.println(message1.getSid());
 				 this.alertDTO.setStatus(true);

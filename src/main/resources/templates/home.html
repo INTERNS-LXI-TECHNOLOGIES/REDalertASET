@@ -430,8 +430,8 @@ to {
 								<div>
 <!-- 									<input name="city" type="hidden" id="idcity">  -->
 <!-- 									<input name="postal" type="hidden" id="idpostal"> -->
-									<input name="latitude"  value="hh" type="hidden" id="idlatitude">
-									<input name="longitude"  value="sahalche" type="hidden" id="idlongitude">
+									<input name="latitude"   type="hidden" id="idlatitude">
+									<input name="longitude"  type="hidden" id="idlongitude">
 								</div>
 								<div th:if="${orangealert!=null}">
 								<input type="hidden" th:field="${orangealert.type}">
@@ -626,6 +626,7 @@ function showPosition(position) {
           center: loc,
           zoom: 15
         });
+        //console.log(loc.lat+"rtdtr"+longitude1.value);
 		//console.log(position.coords.latitude);
 		document.getElementById("lat").value=position.coords.latitude;
 		document.getElementById("long").value=position.coords.longitude;
@@ -635,6 +636,7 @@ function showPosition(position) {
 	  function callback(data)
     {
         //country.value = data.country_name;
+
         state.value = data.state;
        // city.value = data.city;
        // postal.value= data.postal;
@@ -642,9 +644,12 @@ function showPosition(position) {
         console.log(latitude.value+"ffffff");
        
         longitude.value =  loc.lng;
-        latitude1.value =  loc.lat;  
+
         longitude1.value =  loc.lng;
-       //ip.innerHTML = data.IPv4;
+        latitude1.value =  loc.lat;
+    
+      // ip.innerHTML = data.IPv4;
+
 	   	
 		  } console.log("ffffff");
 	 

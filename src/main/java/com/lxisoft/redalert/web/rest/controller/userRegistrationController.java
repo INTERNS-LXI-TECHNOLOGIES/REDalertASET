@@ -98,7 +98,7 @@ public class userRegistrationController {
 		
 		}
 		
-		return "redirect:/redAlertUiHome/home";
+		return "redirect:/redAlertUiLogin/login";
 	}
 	
 	
