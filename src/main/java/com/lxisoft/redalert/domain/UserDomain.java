@@ -1,6 +1,5 @@
 package com.lxisoft.redalert.domain;
 
-<<<<<<< HEAD
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -8,8 +7,7 @@ import javax.persistence.*;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-=======
->>>>>>> 8927673a7df1b7a594ab0b909cc71b99b8376a8d
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
