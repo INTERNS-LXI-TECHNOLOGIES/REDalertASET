@@ -1,11 +1,16 @@
 package com.lxisoft.redalert.web.rest.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.lxisoft.redalert.domain.UserDomain;
+import com.lxisoft.redalert.repository.UserDomainRepository;
+import com.lxisoft.redalert.security.SecurityUtils;
 import com.lxisoft.redalert.service.dto.UserDomainDTO;
 import com.lxisoft.redalert.web.rest.UserDomainResource;
 
@@ -14,14 +19,14 @@ import com.lxisoft.redalert.web.rest.UserDomainResource;
 public class ProfileController {
 	
 	@Autowired
-	UserDomainResource userDomainResource;
+	UserDomainRepository userDomainRepository;
 	
 
 	@GetMapping("/profile")
 	public String displayProfile(Model model)
 	{
-		UserDomainDTO userDomainDTO=userDomainResource.getUserDomain(Long.parseLong("1")).getBody();
-		model.addAttribute("result",userDomainDTO);
+		Optional<UserDomain> userDomainDTO=userDomainRepository.findByEmail( SecurityUtils.getCurrentUserLogin().get());
+		model.addAttribute("result",userDomainDTO.get());
 		return "profile";
 		
 	}

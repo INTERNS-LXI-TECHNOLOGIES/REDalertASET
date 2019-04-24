@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,6 +42,10 @@ public class UserDomain implements Serializable {
 
     @Column(name = "mobile")
     private Long mobile;
+    
+    
+	@Column(nullable = false)
+	private Boolean activated = true;
 
     @OneToMany(mappedBy = "userDomain")
     private Set<Alert> alerts = new HashSet<>();
@@ -108,12 +114,12 @@ public class UserDomain implements Serializable {
     }
 
     public UserDomain password(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
         return this;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password =new BCryptPasswordEncoder().encode(password);
     }
 
     public String getLocality() {
