@@ -4,7 +4,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!--title>Material Design Bootstrap</title-->
+ <!--title>Material Design Bootstrap</title-->
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
@@ -21,7 +21,7 @@
 <script
 	th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
 </head>
-<style>
+<style> 
 .button1align {
 	transform: translate(-200px, 150px);
 }
@@ -596,6 +596,7 @@ var country = document.getElementById('idcountry');
     var city = document.getElementById('idcity');
     var postal = document.getElementById('idpostal');
     var latitude = document.getElementById('idlatitude');
+    console.log(latitude.value+"hdggf");
     var longitude = document.getElementById('idlongitude');
     var latitude1 = document.getElementById('idlatitude1');
     var longitude1 = document.getElementById('idlongitude1');
@@ -618,6 +619,9 @@ function showPosition(position) {
  //x.innerHTML = position.coords.latitude;
   //"<br>Longitude: " + position.coords.longitude;
 	  loc={lat:  position.coords.latitude, lng: position.coords.longitude};
+	  
+	//  latitude.value =  loc.lat;
+	  console.log(latitude.value+"hdggfffff");
         map = new google.maps.Map(document.getElementById('map'), {
           center: loc,
           zoom: 15
@@ -631,20 +635,24 @@ function showPosition(position) {
 	  }
 	  function callback(data)
     {
-       // country.value = data.country_name;
+        //country.value = data.country_name;
+
         state.value = data.state;
        // city.value = data.city;
        // postal.value= data.postal;
         latitude.value =  loc.lat;
+        console.log(latitude.value+"ffffff");
+       
         longitude.value =  loc.lng;
+
         longitude1.value =  loc.lng;
         latitude1.value =  loc.lat;
     
       // ip.innerHTML = data.IPv4;
-      
+
 	   	
-		  }
-		  
+		  } console.log("ffffff");
+	 
 		var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://geoip-db.com/json/geoip.php?jsonp=callback';

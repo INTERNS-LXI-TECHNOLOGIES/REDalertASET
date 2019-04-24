@@ -1,5 +1,6 @@
 package com.lxisoft.redalert.domain;
 
+<<<<<<< HEAD
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -7,10 +8,23 @@ import javax.persistence.*;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+=======
+>>>>>>> 8927673a7df1b7a594ab0b909cc71b99b8376a8d
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * A UserDomain.
@@ -18,6 +32,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "user_domain")
 public class UserDomain implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
     

@@ -129,7 +129,8 @@ public class UserDomainResourceIntTest {
             .password(DEFAULT_PASSWORD)
             .locality(DEFAULT_LOCALITY)
             .mobile(DEFAULT_MOBILE);
-           
+           // .activated(DEFAULT_ACTIVATED);
+
         return userDomain;
     }
 
@@ -160,7 +161,9 @@ public class UserDomainResourceIntTest {
         assertThat(testUserDomain.getPassword()).isEqualTo(DEFAULT_PASSWORD);
         assertThat(testUserDomain.getLocality()).isEqualTo(DEFAULT_LOCALITY);
         assertThat(testUserDomain.getMobile()).isEqualTo(DEFAULT_MOBILE);
-       
+
+       // assertThat(testUserDomain.isActivated()).isEqualTo(DEFAULT_ACTIVATED);
+
     }
 
     @Test
@@ -276,14 +279,14 @@ public class UserDomainResourceIntTest {
         UserDomain updatedUserDomain = userDomainRepository.findById(userDomain.getId()).get();
         // Disconnect from session so that the updates on updatedUserDomain are not directly saved in db
         em.detach(updatedUserDomain);
-        updatedUserDomain
+       updatedUserDomain
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
             .password(UPDATED_PASSWORD)
-            .locality(UPDATED_LOCALITY)
+           .locality(UPDATED_LOCALITY)
             .mobile(UPDATED_MOBILE);
-           
+
         UserDomainDTO userDomainDTO = userDomainMapper.toDto(updatedUserDomain);
 
         restUserDomainMockMvc.perform(put("/api/user-domains")
@@ -301,7 +304,7 @@ public class UserDomainResourceIntTest {
         assertThat(testUserDomain.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testUserDomain.getLocality()).isEqualTo(UPDATED_LOCALITY);
         assertThat(testUserDomain.getMobile()).isEqualTo(UPDATED_MOBILE);
-      
+
     }
 
     @Test
