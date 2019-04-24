@@ -80,26 +80,26 @@ public class userRegistrationController {
 		userData.setUser(userDomainDTO);
 		userData.setContacts(contacts);
 		model.addAttribute("userData",userData);		
-		return "userRegistration";
+		return "redirect:/";
 	}
-	@PostMapping("save-contact")
-	public String getUserDetails(@ModelAttribute UserBinderDTO userBinder) throws URISyntaxException
-	{
-		
-		if(userBinder!=null) {
-			userBinder.getUser().setContacts(new HashSet<ContactDTO>());
-			//System.out.println(userBinder);
-			for(ContactDTO u: userBinder.getContacts())
-			{
-				//System.out.println(u);
-				userBinder.getUser().getContacts().add(contactResource.createContact(u).getBody());
-			}
-			userDomainResource.createUserDomain(userBinder.getUser());
-		
-		}
-		
-		return "redirect:/redAlertUiLogin/login";
-	}
+//	@PostMapping("save-contact")
+//	public String getUserDetails(@ModelAttribute UserBinderDTO userBinder) throws URISyntaxException
+//	{
+//		
+//		if(userBinder!=null) {
+//			userBinder.getUser().setContacts(new HashSet<ContactDTO>());
+//			//System.out.println(userBinder);
+//			for(ContactDTO u: userBinder.getContacts())
+//			{
+//				//System.out.println(u);
+//				userBinder.getUser().getContacts().add(contactResource.createContact(u).getBody());
+//			}
+//			userDomainResource.createUserDomain(userBinder.getUser());
+//		
+//		}
+//		
+//		return "redirect:/redAlertUiLogin/login";
+//	}
 	
 	
 
