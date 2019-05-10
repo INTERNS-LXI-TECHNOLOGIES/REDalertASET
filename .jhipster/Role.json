@@ -1,0 +1,27 @@
+{
+    "name": "Role",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "users",
+            "otherEntityName": "userDomain",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "roles"
+        }
+    ],
+    "changelogDate": "20190420100056",
+    "entityTableName": "role",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,27 @@
+{
+    "name": "ServiceAuthority",
+    "fields": [
+        {
+            "fieldName": "districtName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "authorityName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190506044801",
+    "entityTableName": "service_authority",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

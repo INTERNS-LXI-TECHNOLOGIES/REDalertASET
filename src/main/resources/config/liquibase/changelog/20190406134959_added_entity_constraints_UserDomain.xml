@@ -19,5 +19,16 @@
                                  referencedColumnNames="id"
                                  referencedTableName="contact"/>
         
+        <addForeignKeyConstraint baseColumnNames="user_domain_id"
+                                 baseTableName="user_domain_roles"
+                                 constraintName="fk_user_domain_roles_user_domain_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_domain"/>
+        <addForeignKeyConstraint baseColumnNames="roles_id"
+                                 baseTableName="user_domain_roles"
+                                 constraintName="fk_user_domain_roles_roles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+        
     </changeSet>
 </databaseChangeLog>

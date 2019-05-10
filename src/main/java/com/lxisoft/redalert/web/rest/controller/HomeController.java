@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lxisoft.redalert.domain.enumeration.AlertType;
 import com.lxisoft.redalert.service.dto.AlertDTO;
@@ -46,22 +47,23 @@ public class HomeController
 	
 
 	@PostMapping("/alert-controller")
-	public String makeAlert(@ModelAttribute AlertDTO alert,@ModelAttribute LocationDTO location, Model model) throws URISyntaxException {
+	public String makeAlert(@ModelAttribute AlertDTO alert,@ModelAttribute LocationDTO location, Model model,@RequestParam(name="dName") String d_name) throws URISyntaxException {
 		System.out.println(alert.toString());
 		System.out.println(alert.getType());
 		System.out.println(location.toString());
 		System.out.println("smsService"+smsService);
-	    smsService.sendSms(alert.getDescription(),alert.getType());
+		String a_name=getAuthority( alert);
+	    smsService.sendSms(alert.getDescription(),alert.getType(),location,d_name,a_name);
 	    alert.setStatus(true);
 	    alert=alertResource.createAlert(alert).getBody();
-		return "redirect:/redAlertUiHome/green";
+		return "redirect:/redAlertUiHome/home";
 	}
 	@GetMapping("/green")
 	 public String safeStatus(Model model)
 	 {
-	 	System.out.println("smsService "+smsService);
-	 	System.out.println("alertDTO "+smsService.alertDTO);
-	 	System.out.println("isStatus "+smsService.alertDTO.isStatus());
+	 //	System.out.println("smsService "+smsService);
+	 //	System.out.println("alertDTO "+smsService.alertDTO);
+	 //	System.out.println("isStatus "+smsService.alertDTO.isStatus());
 	 	
 		if	 (smsService.alertDTO.isStatus()==true)
 		{
@@ -76,5 +78,33 @@ public class HomeController
 		System.out.println(msg);
 	     return "redirect:/redAlertUiHome/home";
 	 }
+	public String getAuthority(AlertDTO alert)
+	{
+		String a_name="null";
+		switch(alert.getDescription())
+		{
+		case "WomenMolestation":
+			a_name="police";
+			break;
+		case "Flood":
+			a_name="fireStation";
+			break;
+		case "Earthquake":
+			a_name="fireStation";
+			break;
+		case "Robbery":
+			a_name="police";
+			break;
+		case "Fire Hazard":
+			a_name="fireStation";
+			break;
+		case "Road Accident":
+			a_name="ambulance";
+			break;	
+			 	}
+		
+	return a_name;	
+	}
+	
 
 }

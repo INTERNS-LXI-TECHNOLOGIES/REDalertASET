@@ -10,6 +10,8 @@ import { IRootState } from 'app/shared/reducers';
 
 import { IContact } from 'app/shared/model/contact.model';
 import { getEntities as getContacts } from 'app/entities/contact/contact.reducer';
+import { IRole } from 'app/shared/model/role.model';
+import { getEntities as getRoles } from 'app/entities/role/role.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './user-domain.reducer';
 import { IUserDomain } from 'app/shared/model/user-domain.model';
 // tslint:disable-next-line:no-unused-variable
@@ -21,6 +23,7 @@ export interface IUserDomainUpdateProps extends StateProps, DispatchProps, Route
 export interface IUserDomainUpdateState {
   isNew: boolean;
   idscontacts: any[];
+  idsroles: any[];
 }
 
 export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IUserDomainUpdateState> {
@@ -28,6 +31,7 @@ export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IU
     super(props);
     this.state = {
       idscontacts: [],
+      idsroles: [],
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -46,6 +50,7 @@ export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IU
     }
 
     this.props.getContacts();
+    this.props.getRoles();
   }
 
   saveEntity = (event, errors, values) => {
@@ -54,7 +59,8 @@ export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IU
       const entity = {
         ...userDomainEntity,
         ...values,
-        contacts: mapIdList(values.contacts)
+        contacts: mapIdList(values.contacts),
+        roles: mapIdList(values.roles)
       };
 
       if (this.state.isNew) {
@@ -70,7 +76,7 @@ export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IU
   };
 
   render() {
-    const { userDomainEntity, contacts, loading, updating } = this.props;
+    const { userDomainEntity, contacts, roles, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -129,6 +135,12 @@ export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IU
                   <AvField id="user-domain-mobile" type="string" className="form-control" name="mobile" />
                 </AvGroup>
                 <AvGroup>
+                  <Label id="activatedLabel" check>
+                    <AvInput id="user-domain-activated" type="checkbox" className="form-control" name="activated" />
+                    Activated
+                  </Label>
+                </AvGroup>
+                <AvGroup>
                   <Label for="contacts">Contacts</Label>
                   <AvInput
                     id="user-domain-contacts"
@@ -148,13 +160,35 @@ export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IU
                       : null}
                   </AvInput>
                 </AvGroup>
+                <AvGroup>
+                  <Label for="roles">Roles</Label>
+                  <AvInput
+                    id="user-domain-roles"
+                    type="select"
+                    multiple
+                    className="form-control"
+                    name="roles"
+                    value={userDomainEntity.roles && userDomainEntity.roles.map(e => e.id)}
+                  >
+                    <option value="" key="0" />
+                    {roles
+                      ? roles.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.id}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/user-domain" replace color="info">
-                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
+                  <FontAwesomeIcon icon="arrow-left" />
+                  &nbsp;
                   <span className="d-none d-md-inline">Back</span>
                 </Button>
                 &nbsp;
                 <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                  <FontAwesomeIcon icon="save" />&nbsp; Save
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp; Save
                 </Button>
               </AvForm>
             )}
@@ -167,6 +201,7 @@ export class UserDomainUpdate extends React.Component<IUserDomainUpdateProps, IU
 
 const mapStateToProps = (storeState: IRootState) => ({
   contacts: storeState.contact.entities,
+  roles: storeState.role.entities,
   userDomainEntity: storeState.userDomain.entity,
   loading: storeState.userDomain.loading,
   updating: storeState.userDomain.updating,
@@ -175,6 +210,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getContacts,
+  getRoles,
   getEntity,
   updateEntity,
   createEntity,

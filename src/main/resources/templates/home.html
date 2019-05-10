@@ -4,7 +4,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<!--title>Material Design Bootstrap</title-->
+ <!--title>Material Design Bootstrap</title-->
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
@@ -15,23 +15,23 @@
 <!-- Your custom styles (optional) -->
 <link href="/css/style.css" rel="stylesheet">
 <link rel="/stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css}">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
 </head>
-<style>
+<style> 
 .button1align {
-	transform: translate(-200px, 150px);
+	transform: translate(-250px, 80px);
 }
 
 .button2align {
-	transform: translate(-130px, 150px);
+	transform: translate(-80px, 140px);
 }
 
 .button3align {
-	transform: translate(80px, 115px);
+	transform: translate(230px, 84px);
 }
 
 .dropbtn1 {
@@ -59,7 +59,7 @@
 	background-color: #f1f1f1;
 	min-width: 160px;
 	overflow: auto;
-	transform: translate(-200px, 150px);
+	transform: translate(-290px, 66px);
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
@@ -72,7 +72,7 @@
 }
 
 .dropdown1 a:hover {
-	transform: translate(-80px, 1900px);
+	transform: translate(-100px, 1900px);
 	background-color: #ddd;
 }
 
@@ -101,7 +101,7 @@
 	background-color: #f1f1f1;
 	min-width: 160px;
 	overflow: auto;
-	transform: translate(-125px, 150px);
+	transform: translate(-125px, 143px);
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
@@ -238,33 +238,6 @@ html, body {
 	border-radius: 50%;
 }
 
-.popup {
-	transform: translate(50px, 200px);
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-}
-
-.popup .popuptext {
-	visibility: hidden;
-	width: 160px;
-	background-color: #555;
-	color: #fff;
-	text-align: center;
-	border-radius: 6px;
-	padding: 8px 0;
-	position: absolute;
-	z-index: 1;
-	bottom: 125%;
-	left: 50%;
-	margin-left: -80px;
-}
-
-.popup .show {
-	visibility: visible;
-	-webkit-animation: fadeIn 1s;
-	animation: fadeIn 1s
-}
 
 .logbtn {
 	transform: translate(1150px, -310px);
@@ -277,43 +250,9 @@ html, body {
 	background-size: cover;
 	height: 100%;
 }
-/* Popup container - can be anything you want */
-.popup {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
 
-/* The actual popup */
-.popup .popuptext {
-	visibility: hidden;
-	width: 160px;
-	background-color: #555;
-	color: #fff;
-	text-align: center;
-	border-radius: 6px;
-	padding: 8px 0;
-	position: absolute;
-	z-index: 1;
-	bottom: 125%;
-	left: 50%;
-	margin-left: -80px;
-}
-
-/* Popup arrow */
-.popup .popuptext::after {
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	margin-left: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: #555 transparent transparent transparent;
+.green-btn{
+margin-top: 200px;
 }
 
 /* Toggle this class - hide and show the popup */
@@ -368,16 +307,16 @@ to {
 <li class="nav-item">
   <a href="" class="nav-link" data-toggle="modal" data-target="#modalRegisterForm">Add_Contact</a>
 </li> -->
-
+<!--
 				<li class="nav-item"><a class="nav-link"
-					th:href="@{/redAlertUiLogout/logout}">Logout</a></li>
+					href="/logout">Logout</a></li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto nav-flex-icons">
 
 
 			</ul>
-		</div>
+		</div>  -->
 
 		<!-- 
 <li class="nav-item">
@@ -390,13 +329,13 @@ to {
 
 	<!-- SCRIPTS -->
 	<!-- JQuery -->
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="js/mdb.js"></script>
+	<script type="text/javascript" src="/js/mdb.js"></script>
 
 
 
@@ -430,13 +369,14 @@ to {
 								<div>
 <!-- 									<input name="city" type="hidden" id="idcity">  -->
 <!-- 									<input name="postal" type="hidden" id="idpostal"> -->
-									<input name="latitude"  value="hh" type="hidden" id="idlatitude">
-									<input name="longitude"  value="sahalche" type="hidden" id="idlongitude">
+									<input name="latitude"   type="hidden" id="idlatitude">
+									<input name="longitude"  type="hidden" id="idlongitude">
+									<input name="dName" type="hidden" value="palakkad" id="dnameId1">
 								</div>
 								<div th:if="${orangealert!=null}">
 								<input type="hidden" th:field="${orangealert.type}">
-								<input type="submit" th:name="description" class="btn btn-amber" value="WomenMolestation">
-								<input type="submit" th:name="description" class="btn btn-amber" value="Flood">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="WomenMolestation">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="Flood">
 							
 
 							</form>
@@ -458,16 +398,18 @@ to {
 								<div>
 <!-- 									<input name="city" type="hidden" id="idcity">  -->
 <!-- 									<input name="postal" type="hidden" id="idpostal"> -->
-									<input name="latitude"  value="hh" type="hidden" id="idlatitude">
-									<input name="longitude"  value="sahalche" type="hidden" id="idlongitude">
+									<input name="latitude"   type="hidden" id="idlatitude1">
+									<input name="longitude"  type="hidden" id="idlongitude1">
+									<input name="dName" type="hidden" value="palakkad" id="dnameId">
 								</div>
+								
 								<input type="hidden" th:field="${redalert.type}">
-								<input type="submit" th:name="description" class="btn btn-amber" value="WomenMolestation">
-								<input type="submit" th:name="description" class="btn btn-amber" value="Flood">
-								<input type="submit" th:name="description" class="btn btn-amber" value="Earthquake">
-								<input type="submit" th:name="description" class="btn btn-amber" value="Robbery">
-								<input type="submit" th:name="description" class="btn btn-amber" value="Fire Hazard">
-								<input type="submit" th:name="description" class="btn btn-amber" value="Road Accident">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="WomenMolestation">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="Flood">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="Earthquake">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="Robbery">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="Fire Hazard">
+								<input type="submit" th:name="description" class="btn btn-default btn-block" value="Road Accident">
 							
 
 							</form>
@@ -596,7 +538,10 @@ var country = document.getElementById('idcountry');
     var city = document.getElementById('idcity');
     var postal = document.getElementById('idpostal');
     var latitude = document.getElementById('idlatitude');
+    console.log(latitude.value+"hdggf");
     var longitude = document.getElementById('idlongitude');
+    var latitude1 = document.getElementById('idlatitude1');
+    var longitude1 = document.getElementById('idlongitude1');
     var ip = document.getElementById('idipv4');
 	var loc;
 	
@@ -616,10 +561,14 @@ function showPosition(position) {
  //x.innerHTML = position.coords.latitude;
   //"<br>Longitude: " + position.coords.longitude;
 	  loc={lat:  position.coords.latitude, lng: position.coords.longitude};
+	  
+	//  latitude.value =  loc.lat;
+	  console.log(latitude.value+"hdggfffff");
         map = new google.maps.Map(document.getElementById('map'), {
           center: loc,
           zoom: 15
         });
+        //console.log(loc.lat+"rtdtr"+longitude1.value);
 		//console.log(position.coords.latitude);
 		document.getElementById("lat").value=position.coords.latitude;
 		document.getElementById("long").value=position.coords.longitude;
@@ -628,16 +577,24 @@ function showPosition(position) {
 	  }
 	  function callback(data)
     {
-        country.value = data.country_name;
+        //country.value = data.country_name;
+
         state.value = data.state;
-        city.value = data.city;
-        postal.value= data.postal;
+       // city.value = data.city;
+       // postal.value= data.postal;
         latitude.value =  loc.lat;
+        console.log(latitude.value+"ffffff");
+       
         longitude.value =  loc.lng;
-       ip.innerHTML = data.IPv4;
+
+        longitude1.value =  loc.lng;
+        latitude1.value =  loc.lat;
+    
+      // ip.innerHTML = data.IPv4;
+
 	   	
-		  }
-		  
+		  } console.log("ffffff");
+	 
 		var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://geoip-db.com/json/geoip.php?jsonp=callback';

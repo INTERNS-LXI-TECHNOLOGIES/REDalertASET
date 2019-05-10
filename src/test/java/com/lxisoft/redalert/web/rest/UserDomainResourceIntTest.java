@@ -66,6 +66,9 @@ public class UserDomainResourceIntTest {
     private static final Long DEFAULT_MOBILE = 1L;
     private static final Long UPDATED_MOBILE = 2L;
 
+    private static final Boolean DEFAULT_ACTIVATED = false;
+    private static final Boolean UPDATED_ACTIVATED = true;
+
     @Autowired
     private UserDomainRepository userDomainRepository;
 
@@ -126,6 +129,8 @@ public class UserDomainResourceIntTest {
             .password(DEFAULT_PASSWORD)
             .locality(DEFAULT_LOCALITY)
             .mobile(DEFAULT_MOBILE);
+           // .activated(DEFAULT_ACTIVATED);
+
         return userDomain;
     }
 
@@ -156,6 +161,9 @@ public class UserDomainResourceIntTest {
         assertThat(testUserDomain.getPassword()).isEqualTo(DEFAULT_PASSWORD);
         assertThat(testUserDomain.getLocality()).isEqualTo(DEFAULT_LOCALITY);
         assertThat(testUserDomain.getMobile()).isEqualTo(DEFAULT_MOBILE);
+
+       // assertThat(testUserDomain.isActivated()).isEqualTo(DEFAULT_ACTIVATED);
+
     }
 
     @Test
@@ -194,7 +202,8 @@ public class UserDomainResourceIntTest {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD.toString())))
             .andExpect(jsonPath("$.[*].locality").value(hasItem(DEFAULT_LOCALITY.toString())))
-            .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE.intValue())));
+            .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE.intValue())))
+            .andExpect(jsonPath("$.[*].activated").value(hasItem(DEFAULT_ACTIVATED.booleanValue())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -246,7 +255,8 @@ public class UserDomainResourceIntTest {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD.toString()))
             .andExpect(jsonPath("$.locality").value(DEFAULT_LOCALITY.toString()))
-            .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE.intValue()));
+            .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE.intValue()))
+            .andExpect(jsonPath("$.activated").value(DEFAULT_ACTIVATED.booleanValue()));
     }
 
     @Test
@@ -269,13 +279,14 @@ public class UserDomainResourceIntTest {
         UserDomain updatedUserDomain = userDomainRepository.findById(userDomain.getId()).get();
         // Disconnect from session so that the updates on updatedUserDomain are not directly saved in db
         em.detach(updatedUserDomain);
-        updatedUserDomain
+       updatedUserDomain
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
             .password(UPDATED_PASSWORD)
-            .locality(UPDATED_LOCALITY)
+           .locality(UPDATED_LOCALITY)
             .mobile(UPDATED_MOBILE);
+
         UserDomainDTO userDomainDTO = userDomainMapper.toDto(updatedUserDomain);
 
         restUserDomainMockMvc.perform(put("/api/user-domains")
@@ -293,6 +304,7 @@ public class UserDomainResourceIntTest {
         assertThat(testUserDomain.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testUserDomain.getLocality()).isEqualTo(UPDATED_LOCALITY);
         assertThat(testUserDomain.getMobile()).isEqualTo(UPDATED_MOBILE);
+
     }
 
     @Test

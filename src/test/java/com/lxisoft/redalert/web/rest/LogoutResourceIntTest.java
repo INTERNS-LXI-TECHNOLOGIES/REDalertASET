@@ -47,12 +47,12 @@ public class LogoutResourceIntTest {
 
     private MockMvc restLogoutMockMvc;
 
-    @Before
-    public void before() {
-        LogoutResource logoutResource = new LogoutResource(restTemplateFactory(), accessTokenUri);
-        this.restLogoutMockMvc = MockMvcBuilders.standaloneSetup(logoutResource)
-            .setMessageConverters(jacksonMessageConverter).build();
-    }
+//    @Before
+//    public void before() {
+//        LogoutResource logoutResource = new LogoutResource(restTemplateFactory(), accessTokenUri);
+//        this.restLogoutMockMvc = MockMvcBuilders.standaloneSetup(logoutResource)
+//            .setMessageConverters(jacksonMessageConverter).build();
+//    }
 
     @Test
     public void getLogoutInformation() throws Exception {

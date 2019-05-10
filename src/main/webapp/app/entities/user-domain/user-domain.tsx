@@ -55,7 +55,8 @@ export class UserDomain extends React.Component<IUserDomainProps, IUserDomainSta
         <h2 id="user-domain-heading">
           User Domains
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-            <FontAwesomeIcon icon="plus" />&nbsp; Create new User Domain
+            <FontAwesomeIcon icon="plus" />
+            &nbsp; Create new User Domain
           </Link>
         </h2>
         <div className="table-responsive">
@@ -83,6 +84,9 @@ export class UserDomain extends React.Component<IUserDomainProps, IUserDomainSta
                 <th className="hand" onClick={this.sort('mobile')}>
                   Mobile <FontAwesomeIcon icon="sort" />
                 </th>
+                <th className="hand" onClick={this.sort('activated')}>
+                  Activated <FontAwesomeIcon icon="sort" />
+                </th>
                 <th />
               </tr>
             </thead>
@@ -100,6 +104,7 @@ export class UserDomain extends React.Component<IUserDomainProps, IUserDomainSta
                   <td>{userDomain.password}</td>
                   <td>{userDomain.locality}</td>
                   <td>{userDomain.mobile}</td>
+                  <td>{userDomain.activated ? 'true' : 'false'}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${userDomain.id}`} color="info" size="sm">

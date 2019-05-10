@@ -1,7 +1,9 @@
 package com.lxisoft.redalert.service.impl;
 
 import com.lxisoft.redalert.service.UserDomainService;
+import com.lxisoft.redalert.domain.Role;
 import com.lxisoft.redalert.domain.UserDomain;
+import com.lxisoft.redalert.repository.RoleRepository;
 import com.lxisoft.redalert.repository.UserDomainRepository;
 import com.lxisoft.redalert.service.dto.UserDomainDTO;
 import com.lxisoft.redalert.service.mapper.UserDomainMapper;
@@ -13,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Optional;
 
 /**
@@ -27,10 +31,12 @@ public class UserDomainServiceImpl implements UserDomainService {
     private final UserDomainRepository userDomainRepository;
 
     private final UserDomainMapper userDomainMapper;
+    private final RoleRepository roleRepository;
 
-    public UserDomainServiceImpl(UserDomainRepository userDomainRepository, UserDomainMapper userDomainMapper) {
+    public UserDomainServiceImpl(UserDomainRepository userDomainRepository, UserDomainMapper userDomainMapper,RoleRepository roleRepository) {
         this.userDomainRepository = userDomainRepository;
         this.userDomainMapper = userDomainMapper;
+        this.roleRepository=roleRepository;
     }
 
     /**
@@ -42,7 +48,16 @@ public class UserDomainServiceImpl implements UserDomainService {
     @Override
     public UserDomainDTO save(UserDomainDTO userDomainDTO) {
         log.debug("Request to save UserDomain : {}", userDomainDTO);
+        
         UserDomain userDomain = userDomainMapper.toEntity(userDomainDTO);
+        
+        
+        Role role = new Role();
+		role.setId(1l);
+		role.setName("USER");
+		
+		roleRepository.save(role);
+		userDomain.setRoles(new HashSet<Role>(Arrays.asList(role)));
         userDomain = userDomainRepository.save(userDomain);
         return userDomainMapper.toDto(userDomain);
     }

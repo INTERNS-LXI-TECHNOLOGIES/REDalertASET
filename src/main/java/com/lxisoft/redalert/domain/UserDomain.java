@@ -5,10 +5,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * A UserDomain.
@@ -16,6 +30,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "user_domain")
 public class UserDomain implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
     
@@ -40,6 +55,10 @@ public class UserDomain implements Serializable {
 
     @Column(name = "mobile")
     private Long mobile;
+    
+    
+	@Column(nullable = false)
+	private Boolean activated = true;
 
     @OneToMany(mappedBy = "userDomain")
     private Set<Alert> alerts = new HashSet<>();
@@ -48,6 +67,12 @@ public class UserDomain implements Serializable {
                joinColumns = @JoinColumn(name = "user_domain_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "contacts_id", referencedColumnName = "id"))
     private Set<Contact> contacts = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "user_domain_roles",
+               joinColumns = @JoinColumn(name = "user_domain_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id"))
+    private Set<Role> roles = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -102,12 +127,12 @@ public class UserDomain implements Serializable {
     }
 
     public UserDomain password(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder().encode(password);
         return this;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password =new BCryptPasswordEncoder().encode(password);
     }
 
     public String getLocality() {
@@ -170,9 +195,43 @@ public class UserDomain implements Serializable {
         return this;
     }
 
+    public UserDomain addContacts(Contact contact) {
+        this.contacts.add(contact);
+        return this;
+    }
+
+    public UserDomain removeContacts(Contact contact) {
+        this.contacts.remove(contact);
+        return this;
+    }
 
     public void setContacts(Set<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public UserDomain roles(Set<Role> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    public UserDomain addRoles(Role role) {
+        this.roles.add(role);
+        role.getUsers().add(this);
+        return this;
+    }
+
+    public UserDomain removeRoles(Role role) {
+        this.roles.remove(role);
+        role.getUsers().remove(this);
+        return this;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

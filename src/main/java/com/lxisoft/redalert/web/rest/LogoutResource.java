@@ -19,7 +19,7 @@ import java.util.Map;
 */
 @RestController
 public class LogoutResource {
-    private final Logger log = LoggerFactory.getLogger(LogoutResource.class);
+  /*  private final Logger log = LoggerFactory.getLogger(LogoutResource.class);
     private final UserInfoRestTemplateFactory templateFactory;
     private final String accessTokenUri;
 
@@ -29,11 +29,11 @@ public class LogoutResource {
         this.accessTokenUri = accessTokenUri;
     }
 
-    /**
+    *//**
      * POST  /api/logout : logout the current user
      *
      * @return the ResponseEntity with status 200 (OK) and a body with a global logout URL and ID token
-     */
+     *//*
     @PostMapping("/api/logout")
     public ResponseEntity<?> logout(HttpServletRequest request, Authentication authentication) {
         log.debug("REST request to logout User : {}", authentication);
@@ -46,5 +46,5 @@ public class LogoutResource {
         logoutDetails.put("idToken", idToken);
         request.getSession().invalidate();
         return ResponseEntity.ok().body(logoutDetails);
-    }
+    }*/
 }

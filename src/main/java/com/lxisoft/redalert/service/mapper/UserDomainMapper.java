@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity UserDomain and its DTO UserDomainDTO.
  */
-@Mapper(componentModel = "spring", uses = {ContactMapper.class})
+@Mapper(componentModel = "spring", uses = {ContactMapper.class, RoleMapper.class})
 public interface UserDomainMapper extends EntityMapper<UserDomainDTO, UserDomain> {
 
 
