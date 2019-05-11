@@ -65,7 +65,7 @@ relationship OneToOne {
 }
 
 relationship ManyToMany {
-	UserDomain {contacts} to Contact,
+	UserDomain {contacts} to Contact{users},
 	UserDomain {roles} to Role{users},
 }
 

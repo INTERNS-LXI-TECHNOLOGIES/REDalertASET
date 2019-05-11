@@ -26,8 +26,6 @@ public interface UserDomainRepository extends JpaRepository<UserDomain, Long> {
 
     @Query("select user_domain from UserDomain user_domain left join fetch user_domain.contacts left join fetch user_domain.roles where user_domain.id =:id")
     Optional<UserDomain> findOneWithEagerRelationships(@Param("id") Long id);
-    
-    
-    Optional<UserDomain> findByEmail(String email);
 
+    Optional<UserDomain> findByEmail(String email);
 }

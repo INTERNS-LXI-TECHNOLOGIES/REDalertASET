@@ -1,3 +1,5 @@
+import { IUserDomain } from 'app/shared/model/user-domain.model';
+
 export const enum Relation {
   FATHER = 'FATHER',
   MOTHER = 'MOTHER',
@@ -14,6 +16,7 @@ export interface IContact {
   lastName?: string;
   phoneNumber?: number;
   relation?: Relation;
+  users?: IUserDomain[];
 }
 
 export const defaultValue: Readonly<IContact> = {};

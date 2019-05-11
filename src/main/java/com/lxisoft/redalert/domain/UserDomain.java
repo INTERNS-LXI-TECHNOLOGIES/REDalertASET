@@ -60,7 +60,15 @@ public class UserDomain implements Serializable {
 	@Column(nullable = false)
 	private Boolean activated = true;
 
-    @OneToMany(mappedBy = "userDomain")
+    public Boolean getActivated() {
+		return activated;
+	}
+
+	public void setActivated(Boolean activated) {
+		this.activated = activated;
+	}
+
+	@OneToMany(mappedBy = "userDomain")
     private Set<Alert> alerts = new HashSet<>();
     @ManyToMany
     @JoinTable(name = "user_domain_contacts",

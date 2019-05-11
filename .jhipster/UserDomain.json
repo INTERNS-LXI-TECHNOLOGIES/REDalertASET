@@ -39,7 +39,7 @@
         },
         {
             "relationshipType": "many-to-many",
-            "otherEntityRelationshipName": "userDomain",
+            "otherEntityRelationshipName": "users",
             "relationshipName": "contacts",
             "otherEntityName": "contact",
             "otherEntityField": "id",

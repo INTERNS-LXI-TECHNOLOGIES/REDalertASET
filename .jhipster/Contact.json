@@ -19,7 +19,15 @@
             "fieldValues": "FATHER,MOTHER,SISTER,BROTHER,GUARDIAN,FRIEND,OTHER"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "users",
+            "otherEntityName": "userDomain",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "contacts"
+        }
+    ],
     "changelogDate": "20190406135000",
     "entityTableName": "contact",
     "dto": "mapstruct",

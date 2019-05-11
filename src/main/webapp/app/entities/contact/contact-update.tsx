@@ -8,6 +8,8 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipste
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { IUserDomain } from 'app/shared/model/user-domain.model';
+import { getEntities as getUserDomains } from 'app/entities/user-domain/user-domain.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './contact.reducer';
 import { IContact } from 'app/shared/model/contact.model';
 // tslint:disable-next-line:no-unused-variable
@@ -18,12 +20,14 @@ export interface IContactUpdateProps extends StateProps, DispatchProps, RouteCom
 
 export interface IContactUpdateState {
   isNew: boolean;
+  usersId: string;
 }
 
 export class ContactUpdate extends React.Component<IContactUpdateProps, IContactUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      usersId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -40,6 +44,8 @@ export class ContactUpdate extends React.Component<IContactUpdateProps, IContact
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getUserDomains();
   }
 
   saveEntity = (event, errors, values) => {
@@ -63,7 +69,7 @@ export class ContactUpdate extends React.Component<IContactUpdateProps, IContact
   };
 
   render() {
-    const { contactEntity, loading, updating } = this.props;
+    const { contactEntity, userDomains, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -122,12 +128,14 @@ export class ContactUpdate extends React.Component<IContactUpdateProps, IContact
                   </AvInput>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/contact" replace color="info">
-                  <FontAwesomeIcon icon="arrow-left" />&nbsp;
+                  <FontAwesomeIcon icon="arrow-left" />
+                  &nbsp;
                   <span className="d-none d-md-inline">Back</span>
                 </Button>
                 &nbsp;
                 <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                  <FontAwesomeIcon icon="save" />&nbsp; Save
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp; Save
                 </Button>
               </AvForm>
             )}
@@ -139,6 +147,7 @@ export class ContactUpdate extends React.Component<IContactUpdateProps, IContact
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  userDomains: storeState.userDomain.entities,
   contactEntity: storeState.contact.entity,
   loading: storeState.contact.loading,
   updating: storeState.contact.updating,
@@ -146,6 +155,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getUserDomains,
   getEntity,
   updateEntity,
   createEntity,

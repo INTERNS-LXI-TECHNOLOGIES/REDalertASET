@@ -12,6 +12,8 @@ import org.mapstruct.*;
 public interface ContactMapper extends EntityMapper<ContactDTO, Contact> {
 
 
+    @Mapping(target = "users", ignore = true)
+    Contact toEntity(ContactDTO contactDTO);
 
     default Contact fromId(Long id) {
         if (id == null) {

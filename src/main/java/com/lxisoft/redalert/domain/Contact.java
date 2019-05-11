@@ -1,10 +1,13 @@
 package com.lxisoft.redalert.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.lxisoft.redalert.domain.enumeration.Relation;
@@ -34,6 +37,10 @@ public class Contact implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "relation")
     private Relation relation;
+
+    @ManyToMany(mappedBy = "contacts")
+    @JsonIgnore
+    private Set<UserDomain> users = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -94,6 +101,31 @@ public class Contact implements Serializable {
 
     public void setRelation(Relation relation) {
         this.relation = relation;
+    }
+
+    public Set<UserDomain> getUsers() {
+        return users;
+    }
+
+    public Contact users(Set<UserDomain> userDomains) {
+        this.users = userDomains;
+        return this;
+    }
+
+    public Contact addUsers(UserDomain userDomain) {
+        this.users.add(userDomain);
+        userDomain.getContacts().add(this);
+        return this;
+    }
+
+    public Contact removeUsers(UserDomain userDomain) {
+        this.users.remove(userDomain);
+        userDomain.getContacts().remove(this);
+        return this;
+    }
+
+    public void setUsers(Set<UserDomain> userDomains) {
+        this.users = userDomains;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

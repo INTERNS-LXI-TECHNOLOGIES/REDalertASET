@@ -36,6 +36,14 @@ import serviceAuthority, {
   ServiceAuthorityState
 } from 'app/entities/service-authority/service-authority.reducer';
 
+// prettier-ignore
+import userDomain, {
+  UserDomainState
+} from 'app/entities/user-domain/user-domain.reducer';
+// prettier-ignore
+import contact, {
+  ContactState
+} from 'app/entities/contact/contact.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {

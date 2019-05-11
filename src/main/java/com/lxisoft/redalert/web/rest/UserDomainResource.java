@@ -50,6 +50,7 @@ public class UserDomainResource {
         if (userDomainDTO.getId() != null) {
             throw new BadRequestAlertException("A new userDomain cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        userDomainDTO.setActivated(true);
         UserDomainDTO result = userDomainService.save(userDomainDTO);
         return ResponseEntity.created(new URI("/api/user-domains/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
