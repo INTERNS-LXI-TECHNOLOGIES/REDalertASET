@@ -30,10 +30,12 @@ import emergencyService, {
 import role, {
   RoleState
 } from 'app/entities/role/role.reducer';
+
 // prettier-ignore
 import serviceAuthority, {
   ServiceAuthorityState
 } from 'app/entities/service-authority/service-authority.reducer';
+
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -47,7 +49,9 @@ export interface IRootState {
   readonly location: LocationState;
   readonly emergencyService: EmergencyServiceState;
   readonly role: RoleState;
+
   readonly serviceAuthority: ServiceAuthorityState;
+
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -64,6 +68,7 @@ const rootReducer = combineReducers<IRootState>({
   emergencyService,
   role,
   serviceAuthority,
+
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

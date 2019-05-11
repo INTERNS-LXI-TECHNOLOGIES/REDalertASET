@@ -74,7 +74,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				 * .and() .headers() .frameOptions() .disable() .and()
 				 */
             .authorizeRequests()
+
            .antMatchers("/redAlertUiProfile/profile","/redAlertUiHome/home").authenticated()
+
+           .antMatchers("/redAlertUiProfile/profile").authenticated()
+
 //            .antMatchers("/management/health").permitAll()
 //            .antMatchers("/management/info").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
