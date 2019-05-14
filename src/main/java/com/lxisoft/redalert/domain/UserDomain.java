@@ -60,7 +60,7 @@ public class UserDomain implements Serializable {
 	@Column(nullable = false)
 	private Boolean activated = true;
 
-    public Boolean getActivated() {
+    public Boolean isActivated() {
 		return activated;
 	}
 
@@ -146,6 +146,12 @@ public class UserDomain implements Serializable {
     public String getLocality() {
         return locality;
     }
+    
+    public UserDomain activated(Boolean activated) {
+        this.activated = activated;
+        return this;
+    }
+
 
     public UserDomain locality(String locality) {
         this.locality = locality;
